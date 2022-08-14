@@ -1,16 +1,7 @@
 import { Trans } from '@lingui/macro'
-import { Currency, CurrencyAmount, Token } from '@uniswap/sdk-core'
+import { Currency, Token } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
 import { Connector } from '@web3-react/types'
-import { sendAnalyticsEvent, user } from 'components/AmplitudeAnalytics'
-import {
-  CUSTOM_USER_PROPERTIES,
-  CUSTOM_USER_PROPERTY_SUFFIXES,
-  EventName,
-  WALLET_CONNECTION_RESULT,
-} from 'components/AmplitudeAnalytics/constants'
-import { formatToDecimal, getTokenAddress } from 'components/AmplitudeAnalytics/utils'
-import { sendEvent } from 'components/analytics'
 import { AutoColumn } from 'components/Column'
 import { AutoRow } from 'components/Row'
 import { ConnectionType } from 'connection'
@@ -127,49 +118,6 @@ const WALLET_VIEWS = {
   PENDING: 'pending',
 }
 
-const sendAnalyticsWalletBalanceUserInfo = (
-  balances: (CurrencyAmount<Currency> | undefined)[],
-  nativeCurrencyBalanceUsd: number
-) => {
-  const walletTokensSymbols: string[] = []
-  const walletTokensAddresses: string[] = []
-  balances.forEach((currencyAmount) => {
-    if (currencyAmount !== undefined) {
-      const tokenBalanceAmount = formatToDecimal(currencyAmount, currencyAmount.currency.decimals)
-      if (tokenBalanceAmount > 0) {
-        const tokenAddress = getTokenAddress(currencyAmount.currency)
-        walletTokensAddresses.push(getTokenAddress(currencyAmount.currency))
-        walletTokensSymbols.push(currencyAmount.currency.symbol ?? '')
-        const tokenPrefix = currencyAmount.currency.symbol ?? tokenAddress
-        user.set(`${tokenPrefix}${CUSTOM_USER_PROPERTY_SUFFIXES.WALLET_TOKEN_AMOUNT_SUFFIX}`, tokenBalanceAmount)
-      }
-    }
-  })
-  user.set(CUSTOM_USER_PROPERTIES.WALLET_NATIVE_CURRENCY_BALANCE_USD, nativeCurrencyBalanceUsd)
-  user.set(CUSTOM_USER_PROPERTIES.WALLET_TOKENS_ADDRESSES, walletTokensAddresses)
-  user.set(CUSTOM_USER_PROPERTIES.WALLET_TOKENS_SYMBOLS, walletTokensSymbols)
-}
-
-const sendAnalyticsEventAndUserInfo = (
-  account: string,
-  walletType: string,
-  chainId: number | undefined,
-  isReconnect: boolean
-) => {
-  sendAnalyticsEvent(EventName.WALLET_CONNECT_TXN_COMPLETED, {
-    result: WALLET_CONNECTION_RESULT.SUCCEEDED,
-    wallet_address: account,
-    wallet_type: walletType,
-    is_reconnect: isReconnect,
-  })
-  user.set(CUSTOM_USER_PROPERTIES.WALLET_ADDRESS, account)
-  user.set(CUSTOM_USER_PROPERTIES.WALLET_TYPE, walletType)
-  if (chainId) {
-    user.postInsert(CUSTOM_USER_PROPERTIES.ALL_WALLET_CHAIN_IDS, chainId)
-  }
-  user.postInsert(CUSTOM_USER_PROPERTIES.ALL_WALLET_ADDRESSES_CONNECTED, account)
-}
-
 export default function WalletModal({
   pendingTransactions,
   confirmedTransactions,
@@ -231,13 +179,11 @@ export default function WalletModal({
     }
   }, [pendingConnector, walletView])
 
-  // When new wallet is successfully set by the user, trigger logging of Amplitude analytics event.
   useEffect(() => {
     if (account && account !== lastActiveWalletAddress) {
       const walletType = getConnectionName(getConnection(connector).type, getIsMetaMask())
       const isReconnect =
         connectedWallets.filter((wallet) => wallet.account === account && wallet.walletType === walletType).length > 0
-      sendAnalyticsEventAndUserInfo(account, walletType, chainId, isReconnect)
       setShouldLogWalletBalances(true)
       if (!isReconnect) addWalletToConnectedWallets({ account, walletType })
     }
@@ -247,9 +193,6 @@ export default function WalletModal({
   // Send wallet balance info once it becomes available.
   useEffect(() => {
     if (!tokenBalancesIsLoading && shouldLogWalletBalances && balances && nativeCurrencyBalanceUsdValue) {
-      const nativeCurrencyBalanceUsd =
-        native && nativeCurrencyBalanceUsdValue ? parseFloat(nativeCurrencyBalanceUsdValue) : 0
-      sendAnalyticsWalletBalanceUserInfo(balances, nativeCurrencyBalanceUsd)
       setShouldLogWalletBalances(false)
     }
   }, [
@@ -264,13 +207,6 @@ export default function WalletModal({
   const tryActivation = useCallback(
     async (connector: Connector) => {
       const connectionType = getConnection(connector).type
-
-      // log selected wallet
-      sendEvent({
-        category: 'Wallet',
-        action: 'Change Wallet',
-        label: connectionType,
-      })
 
       try {
         // Fortmatic opens it's own modal on activation to log in. This modal has a tabIndex
@@ -289,11 +225,6 @@ export default function WalletModal({
       } catch (error) {
         console.debug(`web3-react connection error: ${error}`)
         dispatch(updateConnectionError({ connectionType, error: error.message }))
-
-        sendAnalyticsEvent(EventName.WALLET_CONNECT_TXN_COMPLETED, {
-          result: WALLET_CONNECTION_RESULT.FAILED,
-          wallet_type: getConnectionName(connectionType, getIsMetaMask()),
-        })
       }
     },
     [dispatch, toggleWalletModal]

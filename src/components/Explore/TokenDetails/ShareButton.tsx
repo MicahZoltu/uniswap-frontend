@@ -96,7 +96,7 @@ export default function ShareButton(tokenInfo: TokenInfo) {
   const shareTweet = () => {
     toggleShare()
     window.open(
-      `https://twitter.com/intent/tweet?text=Check%20out%20${tokenInfo.tokenName}%20(${tokenInfo.tokenSymbol})%20https://app.uniswap.org/%23/tokens/${tokenInfo.tokenSymbol}%20via%20@uniswap`,
+      `https://twitter.com/intent/tweet?text=Check%20out%20${tokenInfo.tokenName}%20(${tokenInfo.tokenSymbol})%20ipfs://app.uniswap.eth/%23/tokens/${tokenInfo.tokenSymbol}%20via%20@uniswap`,
       'newwindow',
       `left=${positionX}, top=${positionY}, width=${TWITTER_WIDTH}, height=${TWITTER_HEIGHT}`
     )

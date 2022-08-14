@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { sendEvent } from 'components/analytics'
-import React, { ErrorInfo, PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components/macro'
 
 import store, { AppState } from '../../state'
@@ -46,7 +45,7 @@ type ErrorBoundaryState = {
   error: Error | null
 }
 
-const IS_UNISWAP = window.location.hostname === 'app.uniswap.org'
+const IS_UNISWAP = window.location.hostname === 'app.uniswap.eth'
 
 async function updateServiceWorker(): Promise<ServiceWorkerRegistration> {
   const ready = await navigator.serviceWorker.ready
@@ -81,13 +80,6 @@ export default class ErrorBoundary extends React.Component<PropsWithChildren<unk
         console.error('Failed to update service worker', error)
       })
     return { error }
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    sendEvent('exception', {
-      description: error.toString() + errorInfo.toString(),
-      fatal: true,
-    })
   }
 
   render() {

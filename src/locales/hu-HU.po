@@ -317,14 +317,6 @@ msgstr "A legjobb nagyon stabil párok számára."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "A legjobb árú útvonal ~{formattedGasPriceString} a benzinben."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Blokkolt cím"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Zárolt cím"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -897,10 +889,6 @@ msgstr "Értem"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Értem"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Ha úgy gondolja, hogy ez tévedés, kérjük, küldjön egy e-mailt a címével együtt"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1680,6 +1668,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Az alkalmazás blokklánc-adatokat kér le a The Graph által tárolt szolgáltatásból."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Az alkalmazás lekéri a láncon belüli adatokat, és szerződéshívásokat hoz létre egy CloudFlare API-val."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Az alkalmazás lekéri a láncon belüli adatokat, és szerződéshívásokat hoz létre egy Infura API-val."
 
@@ -1766,10 +1758,6 @@ msgstr "Nincs likviditási adat."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Hiba történt a {tokenSymbol} egyenlegének betöltésekor"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Ez a cím le van tiltva az Uniswap Labs felületén, mert egy vagy több címhez van társítva"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2346,10 +2334,6 @@ msgstr "Nem igényelt UNI"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "csúszás után"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "blokkolt tevékenységek"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

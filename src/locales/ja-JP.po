@@ -317,14 +317,6 @@ msgstr "非常に安定したペアに最適"
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "ベスト価格のルートでガス代として〜{formattedGasPriceString} の費用がかかります。"
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "ブロックされたアドレス"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "ブロックされたアドレス"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "ブロックスカウト"
@@ -896,10 +888,6 @@ msgstr "理解しました"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "理解しました"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "これがエラーであると思われる場合は、アドレスを含む電子メールをに送信してください"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "アプリはThe Graphがホストするサービスからブロックチェーンデータを取得します。"
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "アプリはオンチェーンデータを取得し、CloudFlareAPIを使用してコントラクト呼び出しを構築します。"
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "アプリはオンチェーンデータを取得し、InfuraAPIを使用してコントラクト呼び出しを構築します。"
 
@@ -1765,10 +1757,6 @@ msgstr "流動性データはありません。"
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "残高 {tokenSymbol} の読み込み中にエラーが発生しました"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "このアドレスは、1つ以上に関連付けられているため、UniswapLabsインターフェイスでブロックされています。"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "未請求のUNI"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "スリッページ後"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "ブロックされたアクティビティ"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

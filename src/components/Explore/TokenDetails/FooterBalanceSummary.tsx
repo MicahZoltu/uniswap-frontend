@@ -170,7 +170,7 @@ export default function FooterBalanceSummary({
             )}
           </BalanceInfo>
         )}
-        <SwapButton onClick={() => (window.location.href = 'https://app.uniswap.org/#/swap')}>Swap</SwapButton>
+        <SwapButton onClick={() => (window.location.href = 'ipfs://app.uniswap.eth/#/swap')}>Swap</SwapButton>
       </TotalBalancesSection>
       {showMultipleBalances && (
         <NetworkBalancesSection>

@@ -317,14 +317,6 @@ msgstr "Најбоље за веома стабилне парове."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Најповољнија рута кошта ~{formattedGasPriceString} у гасу."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Блокирана адреса"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Блокирана адреса"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Блоцксцоут"
@@ -896,10 +888,6 @@ msgstr "Разумем"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "разумем"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Ако сматрате да је ово грешка, пошаљите е-поруку са својом адресом на"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Aplikacija preuzima blokčein podatke sa hostovane usluge The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Aplikacija preuzima podatke na lancu i konstruiše ugovorne pozive pomoću CloudFlare API-ja."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Aplikacija preuzima podatke na lancu i konstruiše ugovorne pozive pomoću Infura API-ja."
 
@@ -1765,10 +1757,6 @@ msgstr "Нема података о ликвидности."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Дошло је до грешке при учитавању вашег стања {tokenSymbol}"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Ова адреса је блокирана на интерфејсу Унисвап Лабс јер је повезана са једном или више њих"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "Ваш непотраживани UNI"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "после клизања"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "блокиране активности"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

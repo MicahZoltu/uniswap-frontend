@@ -2,7 +2,6 @@
 import { t, Trans } from '@lingui/macro'
 import { TokenList } from '@uniswap/token-lists'
 import { useWeb3React } from '@web3-react/core'
-import { sendEvent } from 'components/analytics'
 import Card from 'components/Card'
 import { UNSUPPORTED_LIST_URLS } from 'constants/lists'
 import { useListColor } from 'hooks/useColor'
@@ -126,45 +125,20 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
 
   const handleAcceptListUpdate = useCallback(() => {
     if (!pending) return
-    sendEvent({
-      category: 'Lists',
-      action: 'Update List from List Select',
-      label: listUrl,
-    })
     dispatch(acceptListUpdate(listUrl))
   }, [dispatch, listUrl, pending])
 
   const handleRemoveList = useCallback(() => {
-    sendEvent({
-      category: 'Lists',
-      action: 'Start Remove List',
-      label: listUrl,
-    })
     if (window.prompt(t`Please confirm you would like to remove this list by typing REMOVE`) === `REMOVE`) {
-      sendEvent({
-        category: 'Lists',
-        action: 'Confirm Remove List',
-        label: listUrl,
-      })
       dispatch(removeList(listUrl))
     }
   }, [dispatch, listUrl])
 
   const handleEnableList = useCallback(() => {
-    sendEvent({
-      category: 'Lists',
-      action: 'Enable List',
-      label: listUrl,
-    })
     dispatch(enableList(listUrl))
   }, [dispatch, listUrl])
 
   const handleDisableList = useCallback(() => {
-    sendEvent({
-      category: 'Lists',
-      action: 'Disable List',
-      label: listUrl,
-    })
     dispatch(disableList(listUrl))
   }, [dispatch, listUrl])
 

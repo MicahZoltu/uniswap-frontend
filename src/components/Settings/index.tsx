@@ -2,7 +2,6 @@
 import { t, Trans } from '@lingui/macro'
 import { Percent } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { sendEvent } from 'components/analytics'
 import { Phase0Variant, usePhase0Flag } from 'featureFlags/flags/phase0'
 import { isSupportedChainId } from 'lib/hooks/routing/clientSideSmartOrderRouter'
 import { useContext, useRef, useState } from 'react'
@@ -221,10 +220,6 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                   id="toggle-optimized-router-button"
                   isActive={!clientSideRouter}
                   toggle={() => {
-                    sendEvent({
-                      category: 'Routing',
-                      action: clientSideRouter ? 'enable routing API' : 'disable routing API',
-                    })
                     setClientSideRouter(!clientSideRouter)
                   }}
                 />

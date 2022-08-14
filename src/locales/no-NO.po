@@ -317,14 +317,6 @@ msgstr "Best for veldig stabile par."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Beste pris rute koster ~{formattedGasPriceString} i gass."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Blokkert adresse"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Blokkert adresse"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -896,10 +888,6 @@ msgstr "Jeg forstår"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Jeg forstår"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Hvis du mener dette er en feil, vennligst send en e-post med adressen din til"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Appen henter blokkjededata fra The Graphs vertstjeneste."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Appen henter kjededata og konstruerer kontraktanrop med et CloudFlare API."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Appen henter kjededata og konstruerer kontraktanrop med et Infura API."
 
@@ -1765,10 +1757,6 @@ msgstr "Det er ingen likviditetsdata."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Det oppsto en feil ved innlasting av {tokenSymbol} -saldoen din"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Denne adressen er blokkert på Uniswap Labs-grensesnittet fordi den er knyttet til en eller flere"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "Ditt uavklarte UNI"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "etter utglidning"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "blokkerte aktiviteter"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

@@ -1,8 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import { t, Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
-import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
 import { getConnection } from 'connection/utils'
 import { getIsValidSwapQuote } from 'pages/Swap'
 import { darken } from 'polished'
@@ -185,18 +183,11 @@ function Web3StatusInner() {
     )
   } else {
     return (
-      <TraceEvent
-        events={[Event.onClick]}
-        name={EventName.CONNECT_WALLET_BUTTON_CLICKED}
-        properties={{ received_swap_quote: validSwapQuote }}
-        element={ElementName.CONNECT_WALLET_BUTTON}
-      >
-        <Web3StatusConnect onClick={toggleWalletModal} faded={!account}>
-          <Text>
-            <Trans>Connect Wallet</Trans>
-          </Text>
-        </Web3StatusConnect>
-      </TraceEvent>
+      <Web3StatusConnect onClick={toggleWalletModal} faded={!account}>
+        <Text>
+          <Trans>Connect Wallet</Trans>
+        </Text>
+      </Web3StatusConnect>
     )
   }
 }

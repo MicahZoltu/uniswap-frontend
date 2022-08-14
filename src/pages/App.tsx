@@ -1,6 +1,3 @@
-import { initializeAnalytics, sendAnalyticsEvent, user } from 'components/AmplitudeAnalytics'
-import { CUSTOM_USER_PROPERTIES, EventName, PageName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import Loader from 'components/Loader'
 import TopLevelModals from 'components/TopLevelModals'
 import { useFeatureFlagsIsLoaded } from 'featureFlags'
@@ -8,17 +5,13 @@ import { Phase0Variant, usePhase0Flag } from 'featureFlags/flags/phase0'
 import ApeModeQueryParamReader from 'hooks/useApeModeQueryParamReader'
 import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { useIsDarkMode } from 'state/user/hooks'
 import styled from 'styled-components/macro'
 import { SpinnerSVG } from 'theme/components'
-import { getBrowser } from 'utils/browser'
 
-import { useAnalyticsReporter } from '../components/analytics'
 import ErrorBoundary from '../components/ErrorBoundary'
 import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import Popups from '../components/Popups'
-import { useIsExpertMode } from '../state/user/hooks'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
 import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
@@ -73,21 +66,6 @@ const Marginer = styled.div`
   margin-top: 5rem;
 `
 
-function getCurrentPageFromLocation(locationPathname: string): PageName | undefined {
-  switch (locationPathname) {
-    case '/swap':
-      return PageName.SWAP_PAGE
-    case '/vote':
-      return PageName.VOTE_PAGE
-    case '/pool':
-      return PageName.POOL_PAGE
-    case '/explore':
-      return PageName.EXPLORE_PAGE
-    default:
-      return undefined
-  }
-}
-
 // this is the same svg defined in assets/images/blue-loader.svg
 // it is defined here because the remote asset may not have had time to load when this file is executing
 const LazyLoadSpinner = () => (
@@ -107,117 +85,93 @@ export default function App() {
   const phase0Flag = usePhase0Flag()
 
   const { pathname } = useLocation()
-  const currentPage = getCurrentPageFromLocation(pathname)
-  const isDarkMode = useIsDarkMode()
-  const isExpertMode = useIsExpertMode()
-
-  useAnalyticsReporter()
-  initializeAnalytics()
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
-
-  useEffect(() => {
-    // TODO(zzmp): add web vitals event properties to app loaded event.
-    sendAnalyticsEvent(EventName.APP_LOADED)
-    user.set(CUSTOM_USER_PROPERTIES.BROWSER, getBrowser())
-    user.set(CUSTOM_USER_PROPERTIES.SCREEN_RESOLUTION_HEIGHT, window.screen.height)
-    user.set(CUSTOM_USER_PROPERTIES.SCREEN_RESOLUTION_WIDTH, window.screen.width)
-  }, [])
-
-  useEffect(() => {
-    user.set(CUSTOM_USER_PROPERTIES.DARK_MODE, isDarkMode)
-  }, [isDarkMode])
-
-  useEffect(() => {
-    user.set(CUSTOM_USER_PROPERTIES.EXPERT_MODE, isExpertMode)
-  }, [isExpertMode])
 
   return (
     <ErrorBoundary>
       <DarkModeQueryParamReader />
       <ApeModeQueryParamReader />
       <AppWrapper>
-        <Trace page={currentPage}>
-          <HeaderWrapper>
-            <Header />
-          </HeaderWrapper>
-          <BodyWrapper>
-            <Popups />
-            <Polling />
-            <TopLevelModals />
-            <Suspense fallback={<Loader />}>
-              {isLoaded ? (
-                <Routes>
-                  {phase0Flag === Phase0Variant.Enabled && (
-                    <>
-                      <Route path="/explore" element={<Explore />} />
-                      <Route
-                        path="/tokens/:tokenAddress"
-                        element={
-                          <Suspense fallback={<LazyLoadSpinner />}>
-                            <TokenDetails />
-                          </Suspense>
-                        }
-                      />
-                    </>
-                  )}
-                  <Route
-                    path="vote/*"
-                    element={
-                      <Suspense fallback={<LazyLoadSpinner />}>
-                        <Vote />
-                      </Suspense>
-                    }
-                  />
-                  <Route path="create-proposal" element={<Navigate to="/vote/create-proposal" replace />} />
-                  <Route path="claim" element={<OpenClaimAddressModalAndRedirectToSwap />} />
-                  <Route path="uni" element={<Earn />} />
-                  <Route path="uni/:currencyIdA/:currencyIdB" element={<Manage />} />
+        <HeaderWrapper>
+          <Header />
+        </HeaderWrapper>
+        <BodyWrapper>
+          <Popups />
+          <Polling />
+          <TopLevelModals />
+          <Suspense fallback={<Loader />}>
+            {isLoaded ? (
+              <Routes>
+                {phase0Flag === Phase0Variant.Enabled && (
+                  <>
+                    <Route path="/explore" element={<Explore />} />
+                    <Route
+                      path="/tokens/:tokenAddress"
+                      element={
+                        <Suspense fallback={<LazyLoadSpinner />}>
+                          <TokenDetails />
+                        </Suspense>
+                      }
+                    />
+                  </>
+                )}
+                <Route
+                  path="vote/*"
+                  element={
+                    <Suspense fallback={<LazyLoadSpinner />}>
+                      <Vote />
+                    </Suspense>
+                  }
+                />
+                <Route path="create-proposal" element={<Navigate to="/vote/create-proposal" replace />} />
+                <Route path="claim" element={<OpenClaimAddressModalAndRedirectToSwap />} />
+                <Route path="uni" element={<Earn />} />
+                <Route path="uni/:currencyIdA/:currencyIdB" element={<Manage />} />
 
-                  <Route path="send" element={<RedirectPathToSwapOnly />} />
-                  <Route path="swap/:outputCurrency" element={<RedirectToSwap />} />
-                  <Route path="swap" element={<Swap />} />
+                <Route path="send" element={<RedirectPathToSwapOnly />} />
+                <Route path="swap/:outputCurrency" element={<RedirectToSwap />} />
+                <Route path="swap" element={<Swap />} />
 
-                  <Route path="pool/v2/find" element={<PoolFinder />} />
-                  <Route path="pool/v2" element={<PoolV2 />} />
-                  <Route path="pool" element={<Pool />} />
-                  <Route path="pool/:tokenId" element={<PositionPage />} />
+                <Route path="pool/v2/find" element={<PoolFinder />} />
+                <Route path="pool/v2" element={<PoolV2 />} />
+                <Route path="pool" element={<Pool />} />
+                <Route path="pool/:tokenId" element={<PositionPage />} />
 
-                  <Route path="add/v2" element={<RedirectDuplicateTokenIdsV2 />}>
-                    <Route path=":currencyIdA" />
-                    <Route path=":currencyIdA/:currencyIdB" />
-                  </Route>
-                  <Route path="add" element={<RedirectDuplicateTokenIds />}>
-                    {/* this is workaround since react-router-dom v6 doesn't support optional parameters any more */}
-                    <Route path=":currencyIdA" />
-                    <Route path=":currencyIdA/:currencyIdB" />
-                    <Route path=":currencyIdA/:currencyIdB/:feeAmount" />
-                  </Route>
+                <Route path="add/v2" element={<RedirectDuplicateTokenIdsV2 />}>
+                  <Route path=":currencyIdA" />
+                  <Route path=":currencyIdA/:currencyIdB" />
+                </Route>
+                <Route path="add" element={<RedirectDuplicateTokenIds />}>
+                  {/* this is workaround since react-router-dom v6 doesn't support optional parameters any more */}
+                  <Route path=":currencyIdA" />
+                  <Route path=":currencyIdA/:currencyIdB" />
+                  <Route path=":currencyIdA/:currencyIdB/:feeAmount" />
+                </Route>
 
-                  <Route path="increase" element={<AddLiquidity />}>
-                    <Route path=":currencyIdA" />
-                    <Route path=":currencyIdA/:currencyIdB" />
-                    <Route path=":currencyIdA/:currencyIdB/:feeAmount" />
-                    <Route path=":currencyIdA/:currencyIdB/:feeAmount/:tokenId" />
-                  </Route>
+                <Route path="increase" element={<AddLiquidity />}>
+                  <Route path=":currencyIdA" />
+                  <Route path=":currencyIdA/:currencyIdB" />
+                  <Route path=":currencyIdA/:currencyIdB/:feeAmount" />
+                  <Route path=":currencyIdA/:currencyIdB/:feeAmount/:tokenId" />
+                </Route>
 
-                  <Route path="remove/v2/:currencyIdA/:currencyIdB" element={<RemoveLiquidity />} />
-                  <Route path="remove/:tokenId" element={<RemoveLiquidityV3 />} />
+                <Route path="remove/v2/:currencyIdA/:currencyIdB" element={<RemoveLiquidity />} />
+                <Route path="remove/:tokenId" element={<RemoveLiquidityV3 />} />
 
-                  <Route path="migrate/v2" element={<MigrateV2 />} />
-                  <Route path="migrate/v2/:address" element={<MigrateV2Pair />} />
+                <Route path="migrate/v2" element={<MigrateV2 />} />
+                <Route path="migrate/v2/:address" element={<MigrateV2Pair />} />
 
-                  <Route path="*" element={<RedirectPathToSwapOnly />} />
-                </Routes>
-              ) : (
-                <Loader />
-              )}
-            </Suspense>
-            <Marginer />
-          </BodyWrapper>
-        </Trace>
+                <Route path="*" element={<RedirectPathToSwapOnly />} />
+              </Routes>
+            ) : (
+              <Loader />
+            )}
+          </Suspense>
+          <Marginer />
+        </BodyWrapper>
       </AppWrapper>
     </ErrorBoundary>
   )

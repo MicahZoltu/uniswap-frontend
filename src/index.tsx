@@ -1,7 +1,6 @@
 import '@reach/dialog/styles.css'
 import 'inter-ui'
 import 'polyfills'
-import 'components/analytics'
 
 import { FeatureFlagsProvider } from 'featureFlags'
 import { BlockNumberProvider } from 'lib/hooks/useBlockNumber'
@@ -12,7 +11,6 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
-import Blocklist from './components/Blocklist'
 import Web3Provider from './components/Web3Provider'
 import { LanguageProvider } from './i18n'
 import App from './pages/App'
@@ -56,15 +54,13 @@ createRoot(container).render(
           <HashRouter>
             <LanguageProvider>
               <Web3Provider>
-                <Blocklist>
-                  <BlockNumberProvider>
-                    <Updaters />
-                    <ThemeProvider>
-                      <ThemedGlobalStyle />
-                      <App />
-                    </ThemeProvider>
-                  </BlockNumberProvider>
-                </Blocklist>
+                <BlockNumberProvider>
+                  <Updaters />
+                  <ThemeProvider>
+                    <ThemedGlobalStyle />
+                    <App />
+                  </ThemeProvider>
+                </BlockNumberProvider>
               </Web3Provider>
             </LanguageProvider>
           </HashRouter>

@@ -317,14 +317,6 @@ msgstr "Tốt nhất cho các cặp rất ổn định."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Tuyến đường giá tốt nhất chi phí ~{formattedGasPriceString} xăng."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Địa chỉ bị chặn"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Địa chỉ bị chặn"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -896,10 +888,6 @@ msgstr "Tôi hiểu"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Tôi hiểu"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Nếu bạn cho rằng đây là lỗi, vui lòng gửi email bao gồm địa chỉ của bạn tới"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Ứng dụng tìm nạp dữ liệu blockchain từ dịch vụ lưu trữ của The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Ứng dụng tìm nạp dữ liệu trên chuỗi và tạo các lệnh gọi hợp đồng bằng API CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Ứng dụng tìm nạp dữ liệu trên chuỗi và tạo các lệnh gọi hợp đồng bằng API Infura."
 
@@ -1765,10 +1757,6 @@ msgstr "Không có dữ liệu thanh khoản."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Đã xảy ra lỗi khi tải số dư {tokenSymbol} của bạn"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Địa chỉ này bị chặn trên giao diện Uniswap Labs vì nó được liên kết với một hoặc nhiều"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "UNI chưa được nhận của bạn"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "sau khi trượt"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "các hoạt động bị chặn"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"
