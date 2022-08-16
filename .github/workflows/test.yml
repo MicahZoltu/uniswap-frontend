@@ -86,9 +86,7 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
           record: false
-          parallel: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          parallel: false
 
   # Included as a single job to check against for cypress test success, as cypress runs in a matrix.
   cypress-tests:
