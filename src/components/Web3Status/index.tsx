@@ -2,12 +2,10 @@
 import { t, Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
 import { getConnection } from 'connection/utils'
-import { getIsValidSwapQuote } from 'pages/Swap'
 import { darken } from 'polished'
 import { useMemo } from 'react'
 import { AlertTriangle } from 'react-feather'
 import { useAppSelector } from 'state/hooks'
-import { useDerivedSwapInfo } from 'state/swap/hooks'
 import styled, { css } from 'styled-components/macro'
 
 import { useHasSocks } from '../../hooks/useSocksBalance'
@@ -126,11 +124,6 @@ function Sock() {
 function Web3StatusInner() {
   const { account, connector, chainId, ENSName } = useWeb3React()
   const connectionType = getConnection(connector).type
-  const {
-    trade: { state: tradeState, trade },
-    inputError: swapInputError,
-  } = useDerivedSwapInfo()
-  const validSwapQuote = getIsValidSwapQuote(trade, tradeState, swapInputError)
 
   const error = useAppSelector((state) => state.connection.errorByConnectionType[getConnection(connector).type])
 
