@@ -1,5 +1,3 @@
-import 'components/analytics'
-
 import useCopyClipboard from 'hooks/useCopyClipboard'
 import React, { HTMLProps, useCallback } from 'react'
 import { ArrowLeft, Copy, ExternalLink as LinkIconFeather, Trash, X } from 'react-feather'
