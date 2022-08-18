@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { sendEvent } from 'components/analytics'
 import { AutoColumn } from 'components/Column'
 import { RowFixed } from 'components/Row'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
@@ -61,11 +60,6 @@ export default function SurveyPopup() {
     if (showPopup === undefined) {
       if (Math.random() < 0.01) {
         setShowSurveyPopup(true)
-        // log a case of succesful view
-        sendEvent({
-          category: 'Survey',
-          action: 'Saw Survey',
-        })
       }
     }
   }, [setShowSurveyPopup, showPopup])
@@ -80,10 +74,6 @@ export default function SurveyPopup() {
         <Wrapper gap="10px">
           <WrappedCloseIcon
             onClick={() => {
-              sendEvent({
-                category: 'Survey',
-                action: 'Clicked Survey Link',
-              })
               setShowSurveyPopup(false)
             }}
           />

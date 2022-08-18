@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
 import { TokenList } from '@uniswap/token-lists'
-import { sendEvent } from 'components/analytics'
 import { ButtonPrimary } from 'components/Button'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -54,23 +53,12 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
     setAddError(null)
     fetchList(listURL)
       .then(() => {
-        sendEvent({
-          category: 'Lists',
-          action: 'Add List',
-          label: listURL,
-        })
-
         // turn list on
         dispatch(enableList(listURL))
         // go back to lists
         setModalView(CurrencyModalView.manage)
       })
       .catch((error) => {
-        sendEvent({
-          category: 'Lists',
-          action: 'Add List Failed',
-          label: listURL,
-        })
         setAddError(error.message)
         dispatch(removeList(listURL))
       })

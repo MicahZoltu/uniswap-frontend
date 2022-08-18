@@ -4,7 +4,6 @@ import { Trans } from '@lingui/macro'
 import { CurrencyAmount, Fraction, Percent, Price, Token } from '@uniswap/sdk-core'
 import { FeeAmount, Pool, Position, priceToClosestTick, TickMath } from '@uniswap/v3-sdk'
 import { useWeb3React } from '@web3-react/core'
-import { sendEvent } from 'components/analytics'
 import Badge, { BadgeVariant } from 'components/Badge'
 import { ButtonConfirmed } from 'components/Button'
 import { BlueCard, DarkGreyCard, LightCard, YellowCard } from 'components/Card'
@@ -336,12 +335,6 @@ function V2PairMigration({
         return migrator
           .multicall(data, { gasLimit: calculateGasMargin(gasEstimate) })
           .then((response: TransactionResponse) => {
-            sendEvent({
-              category: 'Migrate',
-              action: `${isNotUniswap ? 'SushiSwap' : 'V2'}->V3`,
-              label: `${currency0.symbol}/${currency1.symbol}`,
-            })
-
             addTransaction(response, {
               type: TransactionType.MIGRATE_LIQUIDITY_V3,
               baseCurrencyId: currencyId(currency0),

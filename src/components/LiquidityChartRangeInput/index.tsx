@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Currency, Price, Token } from '@uniswap/sdk-core'
 import { FeeAmount } from '@uniswap/v3-sdk'
-import { sendEvent } from 'components/analytics'
 import { AutoColumn, ColumnCenter } from 'components/Column'
 import Loader from 'components/Loader'
 import { format } from 'd3'
@@ -96,7 +95,7 @@ export default function LiquidityChartRangeInput({
 
   const isSorted = currencyA && currencyB && currencyA?.wrapped.sortsBefore(currencyB?.wrapped)
 
-  const { isLoading, isUninitialized, isError, error, formattedData } = useDensityChartData({
+  const { isLoading, isUninitialized, isError, formattedData } = useDensityChartData({
     currencyA,
     currencyB,
     feeAmount,
@@ -156,10 +155,6 @@ export default function LiquidityChartRangeInput({
     },
     [isSorted, price, ticksAtLimit]
   )
-
-  if (isError) {
-    sendEvent('exception', { description: error.toString(), fatal: false })
-  }
 
   return (
     <AutoColumn gap="md" style={{ minHeight: '200px' }}>

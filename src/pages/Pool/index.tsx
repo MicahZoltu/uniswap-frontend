@@ -1,9 +1,5 @@
 import { Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
-import { PageName } from 'components/AmplitudeAnalytics/constants'
-import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
 import { ButtonGray, ButtonPrimary, ButtonText } from 'components/Button'
 import { AutoColumn } from 'components/Column'
 import { FlyoutAlignment, NewMenu } from 'components/Menu'
@@ -251,84 +247,75 @@ export default function Pool() {
   ]
 
   return (
-    <Trace page={PageName.POOL_PAGE} shouldLogImpression>
-      <>
-        <PageWrapper>
-          <AutoColumn gap="lg" justify="center">
-            <AutoColumn gap="lg" style={{ width: '100%' }}>
-              <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
-                <ThemedText.DeprecatedBody fontSize={'20px'}>
-                  <Trans>Pools Overview</Trans>
-                </ThemedText.DeprecatedBody>
-                <ButtonRow>
-                  {showV2Features && (
-                    <Menu
-                      menuItems={menuItems}
-                      flyoutAlignment={FlyoutAlignment.LEFT}
-                      ToggleUI={(props: any) => (
-                        <MoreOptionsButton {...props}>
-                          <MoreOptionsText>
-                            <Trans>More</Trans>
-                            <ChevronDown size={15} />
-                          </MoreOptionsText>
-                        </MoreOptionsButton>
-                      )}
-                    />
-                  )}
-                  <ResponsiveButtonPrimary data-cy="join-pool-button" id="join-pool-button" as={Link} to="/add/ETH">
-                    + <Trans>New Position</Trans>
-                  </ResponsiveButtonPrimary>
-                </ButtonRow>
-              </TitleRow>
-
-              <MainContentWrapper>
-                {positionsLoading ? (
-                  <PositionsLoadingPlaceholder />
-                ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
-                  <PositionList
-                    positions={filteredPositions}
-                    setUserHideClosedPositions={setUserHideClosedPositions}
-                    userHideClosedPositions={userHideClosedPositions}
+    <>
+      <PageWrapper>
+        <AutoColumn gap="lg" justify="center">
+          <AutoColumn gap="lg" style={{ width: '100%' }}>
+            <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
+              <ThemedText.DeprecatedBody fontSize={'20px'}>
+                <Trans>Pools Overview</Trans>
+              </ThemedText.DeprecatedBody>
+              <ButtonRow>
+                {showV2Features && (
+                  <Menu
+                    menuItems={menuItems}
+                    flyoutAlignment={FlyoutAlignment.LEFT}
+                    ToggleUI={(props: any) => (
+                      <MoreOptionsButton {...props}>
+                        <MoreOptionsText>
+                          <Trans>More</Trans>
+                          <ChevronDown size={15} />
+                        </MoreOptionsText>
+                      </MoreOptionsButton>
+                    )}
                   />
-                ) : (
-                  <ErrorContainer>
-                    <ThemedText.DeprecatedBody color={theme.deprecated_text3} textAlign="center">
-                      <InboxIcon strokeWidth={1} />
-                      <div>
-                        <Trans>Your active V3 liquidity positions will appear here.</Trans>
-                      </div>
-                    </ThemedText.DeprecatedBody>
-                    {!showConnectAWallet && closedPositions.length > 0 && (
-                      <ButtonText
-                        style={{ marginTop: '.5rem' }}
-                        onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
-                      >
-                        <Trans>Show closed positions</Trans>
-                      </ButtonText>
-                    )}
-                    {showConnectAWallet && (
-                      <TraceEvent
-                        events={[Event.onClick]}
-                        name={EventName.CONNECT_WALLET_BUTTON_CLICKED}
-                        properties={{ received_swap_quote: false }}
-                        element={ElementName.CONNECT_WALLET_BUTTON}
-                      >
-                        <ButtonPrimary style={{ marginTop: '2em', padding: '8px 16px' }} onClick={toggleWalletModal}>
-                          <Trans>Connect a wallet</Trans>
-                        </ButtonPrimary>
-                      </TraceEvent>
-                    )}
-                  </ErrorContainer>
                 )}
-              </MainContentWrapper>
-              <HideSmall>
-                <CTACards />
-              </HideSmall>
-            </AutoColumn>
+                <ResponsiveButtonPrimary data-cy="join-pool-button" id="join-pool-button" as={Link} to="/add/ETH">
+                  + <Trans>New Position</Trans>
+                </ResponsiveButtonPrimary>
+              </ButtonRow>
+            </TitleRow>
+
+            <MainContentWrapper>
+              {positionsLoading ? (
+                <PositionsLoadingPlaceholder />
+              ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
+                <PositionList
+                  positions={filteredPositions}
+                  setUserHideClosedPositions={setUserHideClosedPositions}
+                  userHideClosedPositions={userHideClosedPositions}
+                />
+              ) : (
+                <ErrorContainer>
+                  <ThemedText.DeprecatedBody color={theme.deprecated_text3} textAlign="center">
+                    <InboxIcon strokeWidth={1} />
+                    <div>
+                      <Trans>Your active V3 liquidity positions will appear here.</Trans>
+                    </div>
+                  </ThemedText.DeprecatedBody>
+                  {!showConnectAWallet && closedPositions.length > 0 && (
+                    <ButtonText
+                      style={{ marginTop: '.5rem' }}
+                      onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
+                    >
+                      <Trans>Show closed positions</Trans>
+                    </ButtonText>
+                  )}
+                  {showConnectAWallet && (
+                    <ButtonPrimary style={{ marginTop: '2em', padding: '8px 16px' }} onClick={toggleWalletModal}>
+                      <Trans>Connect a wallet</Trans>
+                    </ButtonPrimary>
+                  )}
+                </ErrorContainer>
+              )}
+            </MainContentWrapper>
+            <HideSmall>
+              <CTACards />
+            </HideSmall>
           </AutoColumn>
-        </PageWrapper>
-        <SwitchLocaleLink />
-      </>
-    </Trace>
+        </AutoColumn>
+      </PageWrapper>
+      <SwitchLocaleLink />
+    </>
   )
 }

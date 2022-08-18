@@ -3,9 +3,6 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { Trans } from '@lingui/macro'
 import { Currency, CurrencyAmount, Percent } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
-import { sendEvent } from 'components/analytics'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
 import { useCallback, useContext, useState } from 'react'
@@ -199,12 +196,6 @@ export default function AddLiquidity() {
           })
 
           setTxHash(response.hash)
-
-          sendEvent({
-            category: 'Liquidity',
-            action: 'Add',
-            label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
-          })
         })
       )
       .catch((error) => {
@@ -435,16 +426,9 @@ export default function AddLiquidity() {
                 </ThemedText.DeprecatedMain>
               </ButtonPrimary>
             ) : !account ? (
-              <TraceEvent
-                events={[Event.onClick]}
-                name={EventName.CONNECT_WALLET_BUTTON_CLICKED}
-                properties={{ received_swap_quote: false }}
-                element={ElementName.CONNECT_WALLET_BUTTON}
-              >
-                <ButtonLight onClick={toggleWalletModal}>
-                  <Trans>Connect Wallet</Trans>
-                </ButtonLight>
-              </TraceEvent>
+              <ButtonLight onClick={toggleWalletModal}>
+                <Trans>Connect Wallet</Trans>
+              </ButtonLight>
             ) : (
               <AutoColumn gap={'md'}>
                 {(approvalA === ApprovalState.NOT_APPROVED ||
