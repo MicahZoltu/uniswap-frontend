@@ -317,14 +317,6 @@ msgstr "Paras erittäin vakaille pareille."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Paras hinta reitti maksaa ~{formattedGasPriceString} bensaa."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Estetty osoite"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Estetty osoite"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -896,10 +888,6 @@ msgstr "Ymmärrän"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Ymmärrän"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Jos uskot tämän olevan virhe, lähetä osoitteesi sisältävä sähköpostiviesti osoitteeseen"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Sovellus hakee lohkoketjutiedot The Graphin isännöidyltä palvelulta."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Sovellus hakee ketjun tietoja ja muodostaa sopimuskutsuja CloudFlare API:lla."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Sovellus hakee ketjun tietoja ja muodostaa sopimuskutsuja Infura API:lla."
 
@@ -1765,10 +1757,6 @@ msgstr "Likviditeettitietoja ei ole."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "{tokenSymbol} -saldoasi ladattaessa tapahtui virhe"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Tämä osoite on estetty Uniswap Labs -käyttöliittymässä, koska se on liitetty yhteen tai useampaan"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "Lunastamattomat UNIsi"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "liukumisen jälkeen"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "estetty toiminta"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

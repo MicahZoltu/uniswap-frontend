@@ -317,14 +317,6 @@ msgstr "Cel mai bun pentru perechi foarte stabile."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Ruta cu cel mai bun preț costă ~{formattedGasPriceString} în benzină."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Adresă blocată"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Adresă blocată"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -896,10 +888,6 @@ msgstr "Am înțeles"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Înţeleg"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Dacă credeți că aceasta este o eroare, vă rugăm să trimiteți un e-mail cu adresa dvs. la"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Aplicația preia date blockchain de la serviciul găzduit The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Aplicația preia date în lanț și construiește apeluri contractuale cu un API CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Aplicația preia date în lanț și construiește apeluri contractuale cu un API Infura."
 
@@ -1765,10 +1757,6 @@ msgstr "Nu există date privind lichiditatea."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "A apărut o eroare la încărcarea soldului dvs. {tokenSymbol}"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Această adresă este blocată pe interfața Uniswap Labs deoarece este asociată cu unul sau mai multe"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "UNI nerevendicate de tine"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "după alunecare"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "activități blocate"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

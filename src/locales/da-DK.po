@@ -317,14 +317,6 @@ msgstr "Bedst til meget stabile par."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Bedste pris rute koster ~{formattedGasPriceString} i gas."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Blokeret adresse"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Blokeret adresse"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blokspejder"
@@ -896,10 +888,6 @@ msgstr "Jeg forstår"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Jeg har forstået"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Hvis du mener, at dette er en fejl, bedes du sende en e-mail med din adresse til"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Appen henter blockchain-data fra The Graphs hostede tjeneste."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Appen henter on-chain data og konstruerer kontraktopkald med en CloudFlare API."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Appen henter on-chain data og konstruerer kontraktopkald med en Infura API."
 
@@ -1765,10 +1757,6 @@ msgstr "Der er ingen likviditetsdata."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Der opstod en fejl under indlæsning af din {tokenSymbol} -saldo"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Denne adresse er blokeret på Uniswap Labs-grænsefladen, fordi den er knyttet til en eller flere"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "Din ikke-krævede UNI"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "efter glidning"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "blokerede aktiviteter"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

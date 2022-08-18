@@ -317,14 +317,6 @@ msgstr "Ideale per coppie molto stabili."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Il miglior percorso di prezzo costa ~{formattedGasPriceString} in gas."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Indirizzo bloccato"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Indirizzo bloccato"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blocksout"
@@ -896,10 +888,6 @@ msgstr "Capisco"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Capisco"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Se ritieni che si tratti di un errore, invia un'e-mail includendo il tuo indirizzo a"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "L'app recupera i dati blockchain dal servizio ospitato di The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "L'app recupera i dati sulla catena e crea chiamate di contratto con un'API CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "L'app recupera i dati sulla catena e crea chiamate di contratto con un'API Infura."
 
@@ -1765,10 +1757,6 @@ msgstr "Non ci sono dati sulla liquidità."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Si è verificato un errore durante il caricamento del saldo {tokenSymbol}"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Questo indirizzo è bloccato sull'interfaccia di Uniswap Labs perché è associato a uno o più"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "La tua UNI non richiesta"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "dopo lo slittamento"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "attività bloccate"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

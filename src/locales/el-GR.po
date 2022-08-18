@@ -317,14 +317,6 @@ msgstr "Καλύτερο για πολύ σταθερά ζευγάρια."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Η καλύτερη τιμή διαδρομής κοστίζει ~{formattedGasPriceString} σε φυσικό αέριο."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Αποκλεισμένη διεύθυνση"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Αποκλεισμένη διεύθυνση"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Μπλοκσκάουτ"
@@ -896,10 +888,6 @@ msgstr "Καταλαβαίνω"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Κατανοώ"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Εάν πιστεύετε ότι πρόκειται για σφάλμα, στείλτε ένα email με τη διεύθυνσή σας στο"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Η εφαρμογή ανακτά δεδομένα blockchain από την φιλοξενούμενη υπηρεσία του The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Η εφαρμογή ανακτά δεδομένα στην αλυσίδα και δημιουργεί κλήσεις συμβολαίου με ένα CloudFlare API."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Η εφαρμογή ανακτά δεδομένα στην αλυσίδα και δημιουργεί κλήσεις συμβολαίου με ένα Infura API."
 
@@ -1765,10 +1757,6 @@ msgstr "Δεν υπάρχουν δεδομένα ρευστότητας."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Παρουσιάστηκε σφάλμα κατά τη φόρτωση του υπολοίπου {tokenSymbol}"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Αυτή η διεύθυνση είναι αποκλεισμένη στη διεπαφή Uniswap Labs επειδή σχετίζεται με μία ή περισσότερες"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "Το αζήτητο UNI σας"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "μετά από ολίσθηση"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "μπλοκαρισμένες δραστηριότητες"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

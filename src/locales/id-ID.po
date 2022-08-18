@@ -317,14 +317,6 @@ msgstr "Terbaik untuk pasangan yang sangat stabil."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Biaya rute harga terbaik ~{formattedGasPriceString} dalam gas."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Alamat yang Diblokir"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Alamat diblokir"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -896,10 +888,6 @@ msgstr "Saya mengerti"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Saya mengerti"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Jika Anda yakin ini adalah kesalahan, silakan kirim email termasuk alamat Anda ke"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Aplikasi ini mengambil data blockchain dari layanan yang dihosting The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Aplikasi mengambil data on-chain dan membuat panggilan kontrak dengan API CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Aplikasi mengambil data on-chain dan membuat panggilan kontrak dengan API Infura."
 
@@ -1765,10 +1757,6 @@ msgstr "Tidak ada data likuiditas."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Terjadi kesalahan saat memuat saldo {tokenSymbol} Anda"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Alamat ini diblokir di antarmuka Uniswap Labs karena terkait dengan satu atau lebih"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "UNI Anda yang belum diklaim"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "setelah tergelincir"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "aktivitas yang diblokir"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

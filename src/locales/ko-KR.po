@@ -317,14 +317,6 @@ msgstr "매우 안정적인 쌍에 가장 적합합니다."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "최고의 가격 경로 비용은 ~{formattedGasPriceString} 가스입니다."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "차단된 주소"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "차단된 주소"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "블록스카우트"
@@ -896,10 +888,6 @@ msgstr "이해 했어요"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "알겠습니다"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "이것이 오류라고 생각되면 주소가 포함된 이메일을 다음 주소로 보내주십시오."
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "앱은 Graph의 호스팅 서비스에서 블록체인 데이터를 가져옵니다."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "앱은 온체인 데이터를 가져오고 CloudFlare API를 사용하여 계약 호출을 구성합니다."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "앱은 온체인 데이터를 가져오고 Infura API를 사용하여 계약 호출을 구성합니다."
 
@@ -1765,10 +1757,6 @@ msgstr "유동성 데이터가 없습니다."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "{tokenSymbol} 잔액을 로드하는 중에 오류가 발생했습니다."
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "이 주소는 하나 이상의 주소와 연결되어 있기 때문에 Uniswap Labs 인터페이스에서 차단됩니다."
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "내 미 청구 UNI"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "미끄러진 후"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "차단된 활동"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

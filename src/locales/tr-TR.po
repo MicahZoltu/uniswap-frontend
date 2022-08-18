@@ -317,14 +317,6 @@ msgstr "Çok kararlı çiftler için en iyisi."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "En iyi fiyat rota maliyetleri gazda{formattedGasPriceString}"
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Engellenen Adres"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Engellenen adres"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "blok izci"
@@ -896,10 +888,6 @@ msgstr "Anlıyorum"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Anladım"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Bunun bir hata olduğunu düşünüyorsanız, lütfen adresinizi içeren bir e-posta gönderin."
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Uygulama, The Graph'in barındırılan hizmetinden blok zinciri verilerini alır."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Uygulama, zincir üzerindeki verileri getirir ve bir CloudFlare API ile sözleşme çağrıları oluşturur."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Uygulama, zincir üzerindeki verileri getirir ve bir Infura API ile sözleşme çağrıları oluşturur."
 
@@ -1765,10 +1757,6 @@ msgstr "Likidite verisi yok."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "{tokenSymbol} bakiyeniz yüklenirken bir hata oluştu"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Bu adres, bir veya daha fazla adresle ilişkili olduğu için Uniswap Labs arabiriminde engellendi."
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "Talep edilmemiş UNI'niz"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "kaymadan sonra"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "engellenen etkinlikler"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

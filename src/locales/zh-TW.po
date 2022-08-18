@@ -317,14 +317,6 @@ msgstr "適合非常穩定的幣對。"
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "最佳價格路由消耗的gas約為 {formattedGasPriceString}"
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "封鎖地址"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "已屏蔽地址"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "塊偵察"
@@ -896,10 +888,6 @@ msgstr "瞭解"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "我已知悉"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "如果您認為這是一個錯誤，請發送包含您的地址的電子郵件至"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "該應用程序從 The Graph 的託管服務中獲取區塊鏈數據。"
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "該應用程序獲取鏈上數據並使用 CloudFlare API 構建合約調用。"
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "該應用程序獲取鏈上數據並使用 Infura API 構建合約調用。"
 
@@ -1765,10 +1757,6 @@ msgstr "沒有流動性數據。"
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "加載您的 {tokenSymbol} 餘額時出錯"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "此地址在 Uniswap Labs 界面上被阻止，因為它與一個或多個相關聯"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "您未領取的 UNI 代幣"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "滑點後"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "被阻止的活動"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

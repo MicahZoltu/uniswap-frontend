@@ -317,14 +317,6 @@ msgstr "الأفضل للأزواج المستقرة جدًا."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "تكاليف مسار أفضل الأسعار ~{formattedGasPriceString} في الغاز."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "العنوان المحظور"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "عنوان محظور"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "بلوكسكوت"
@@ -896,10 +888,6 @@ msgstr "اني اتفهم"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "أنا أفهم"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "إذا كنت تعتقد أن هذا خطأ ، يرجى إرسال بريد إلكتروني يتضمن عنوانك إلى"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "يجلب التطبيق بيانات blockchain من خدمة The Graph المستضافة."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "يجلب التطبيق البيانات على السلسلة وينشئ مكالمات تعاقدية باستخدام واجهة برمجة تطبيقات CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "يجلب التطبيق البيانات على السلسلة وينشئ مكالمات تعاقدية باستخدام واجهة برمجة تطبيقات Infura."
 
@@ -1765,10 +1757,6 @@ msgstr "لا توجد بيانات سيولة."
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "حدث خطأ أثناء تحميل رصيدك {tokenSymbol}"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "هذا العنوان محظور في واجهة Uniswap Labs لأنه مرتبط بواحد أو أكثر"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "UNI الخاص بك بدون مطالبة"
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "بعد الانزلاق السعري"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "الأنشطة المحظورة"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

@@ -317,14 +317,6 @@ msgstr "ดีที่สุดสำหรับคู่ที่มีเส
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "เส้นทางราคาที่ถูกที่สุด ~{formattedGasPriceString} ในก๊าซ"
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "ที่อยู่ที่ถูกบล็อก"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "ที่อยู่ที่ถูกบล็อก"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -896,10 +888,6 @@ msgstr "ฉันเข้าใจ"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "ฉันเข้าใจ"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "หากคุณเชื่อว่านี่เป็นข้อผิดพลาด โปรดส่งอีเมลพร้อมที่อยู่ของคุณไปที่"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1679,6 +1667,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "แอพดึงข้อมูลบล็อคเชนจากบริการโฮสต์ของ The Graph"
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "แอปดึงข้อมูลในสายโซ่และสร้างการเรียกสัญญาด้วย CloudFlare API"
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "แอปดึงข้อมูลในสายโซ่และสร้างการเรียกสัญญาด้วย Infura API"
 
@@ -1765,10 +1757,6 @@ msgstr "ไม่มีข้อมูลสภาพคล่อง"
 #: src/components/Explore/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "เกิดข้อผิดพลาดในการโหลดยอดคงเหลือ {tokenSymbol} ของคุณ"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "ที่อยู่นี้ถูกบล็อกบนอินเทอร์เฟซ Uniswap Labs เนื่องจากเชื่อมโยงกับหนึ่งรายการขึ้นไป"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2345,10 +2333,6 @@ msgstr "UNI . ที่ไม่มีการอ้างสิทธิ์ข
 #: src/components/swap/AdvancedSwapDetails.tsx
 msgid "after slippage"
 msgstr "หลังการลื่นไถล"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "กิจกรรมที่ถูกปิดกั้น"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"
