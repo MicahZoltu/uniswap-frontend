@@ -22,9 +22,9 @@ export function matchDocument({ request, url }: RouteMatchCallbackOptions) {
     return false
   }
 
-  // If this isn't app.uniswap.org (or a local build), skip.
-  // IPFS gateways may not have domain separation, so they cannot use document caching.
-  if (url.hostname !== 'app.uniswap.org' && !isDevelopment()) {
+  // If this is hosted via a path based IPFS gateway, skip
+  // Path based IPFS gateways do not have domain separation, so they should not use document caching.
+  if ((/^.*?\/ipfs\/.*$/.test(url.pathname) || /^.*?\/ipns\/.*$/.test(url.pathname)) && !isDevelopment()) {
     return false
   }
 

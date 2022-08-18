@@ -13,12 +13,44 @@ jest.mock('workbox-routing', () => ({ Route: class {} }))
 describe('document', () => {
   describe('matchDocument', () => {
     const TEST_DOCUMENTS = [
-      [{ request: {}, url: { hostname: 'example.com', pathname: '' } }, false],
-      [{ request: { mode: 'navigate' }, url: { hostname: 'example.com', pathname: '' } }, false],
-      [{ request: {}, url: { hostname: 'app.uniswap.org', pathname: '' } }, false],
-      [{ request: { mode: 'navigate' }, url: { hostname: 'app.uniswap.org', pathname: '' } }, true],
-      [{ request: { mode: 'navigate' }, url: { hostname: 'app.uniswap.org', pathname: '/#/swap' } }, true],
-      [{ request: { mode: 'navigate' }, url: { hostname: 'app.uniswap.org', pathname: '/asset.gif' } }, false],
+      [
+        {
+          request: {},
+          url: { hostname: 'cf-ipfs.io', pathname: '/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR' },
+        },
+        false,
+      ],
+      [
+        {
+          request: { mode: 'navigate' },
+          url: { hostname: 'cf-ipfs.io', pathname: '/ipfs/QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR' },
+        },
+        false,
+      ],
+      [
+        {
+          request: {},
+          url: {
+            hostname: 'bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi.ipfs.cf-ipfs.io',
+            pathname: '',
+          },
+        },
+        false,
+      ],
+      [
+        {
+          request: { mode: 'navigate' },
+          url: {
+            hostname: 'bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi.ipfs.cf-ipfs.io',
+            pathname: '',
+          },
+        },
+        true,
+      ],
+      [{ request: {}, url: { hostname: 'app.uniswap.eth', pathname: '' } }, false],
+      [{ request: { mode: 'navigate' }, url: { hostname: 'app.uniswap.eth', pathname: '' } }, true],
+      [{ request: { mode: 'navigate' }, url: { hostname: 'app.uniswap.eth', pathname: '/#/swap' } }, true],
+      [{ request: { mode: 'navigate' }, url: { hostname: 'app.uniswap.eth', pathname: '/asset.gif' } }, false],
       [{ request: {}, url: { hostname: 'localhost', pathname: '' } }, false],
       [{ request: { mode: 'navigate' }, url: { hostname: 'localhost', pathname: '' } }, true],
       [{ request: { mode: 'navigate' }, url: { hostname: 'localhost', pathname: '/#/swap' } }, true],
