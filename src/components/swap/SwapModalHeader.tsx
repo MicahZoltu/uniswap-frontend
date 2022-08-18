@@ -1,9 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Currency, Percent, TradeType } from '@uniswap/sdk-core'
 import { Price } from '@uniswap/sdk-core'
-import { sendAnalyticsEvent } from 'components/AmplitudeAnalytics'
-import { EventName, SWAP_PRICE_UPDATE_USER_RESPONSE } from 'components/AmplitudeAnalytics/constants'
-import { formatPercentInBasisPointsNumber } from 'components/AmplitudeAnalytics/utils'
 import { Phase0Variant, usePhase0Flag } from 'featureFlags/flags/phase0'
 import { useContext, useEffect, useState } from 'react'
 import { AlertTriangle, ArrowDown } from 'react-feather'
@@ -43,28 +40,13 @@ const ArrowWrapper = styled.div<{ phase0Flag: boolean }>`
   z-index: 2;
 `
 
-const formatAnalyticsEventProperties = (
-  trade: InterfaceTrade<Currency, Currency, TradeType>,
-  priceUpdate: number | undefined,
-  response: SWAP_PRICE_UPDATE_USER_RESPONSE
-) => ({
-  chain_id:
-    trade.inputAmount.currency.chainId === trade.outputAmount.currency.chainId
-      ? trade.inputAmount.currency.chainId
-      : undefined,
-  response,
-  token_in_symbol: trade.inputAmount.currency.symbol,
-  token_out_symbol: trade.outputAmount.currency.symbol,
-  price_update_basis_points: priceUpdate,
-})
-
 const getPriceUpdateBasisPoints = (
   prevPrice: Price<Currency, Currency>,
   newPrice: Price<Currency, Currency>
 ): number => {
   const changeFraction = newPrice.subtract(prevPrice).divide(prevPrice)
   const changePercentage = new Percent(changeFraction.numerator, changeFraction.denominator)
-  return formatPercentInBasisPointsNumber(changePercentage)
+  return parseFloat(changePercentage.toFixed(2)) * 100
 }
 
 export default function SwapModalHeader({
@@ -103,11 +85,6 @@ export default function SwapModalHeader({
   }, [lastExecutionPrice, setLastExecutionPrice, trade.executionPrice])
 
   useEffect(() => {
-    if (shouldLogModalCloseEvent && showAcceptChanges)
-      sendAnalyticsEvent(
-        EventName.SWAP_PRICE_UPDATE_ACKNOWLEDGED,
-        formatAnalyticsEventProperties(trade, priceUpdate, SWAP_PRICE_UPDATE_USER_RESPONSE.REJECTED)
-      )
     setShouldLogModalCloseEvent(false)
   }, [shouldLogModalCloseEvent, showAcceptChanges, setShouldLogModalCloseEvent, trade, priceUpdate])
 

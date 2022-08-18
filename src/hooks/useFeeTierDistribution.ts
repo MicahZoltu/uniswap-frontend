@@ -1,7 +1,6 @@
 import { skipToken } from '@reduxjs/toolkit/query/react'
 import { Currency, Token } from '@uniswap/sdk-core'
 import { FeeAmount } from '@uniswap/v3-sdk'
-import { sendEvent } from 'components/analytics'
 import useBlockNumber from 'lib/hooks/useBlockNumber'
 import ms from 'ms.macro'
 import { useMemo } from 'react'
@@ -112,8 +111,6 @@ function usePoolTVL(token0: Token | undefined, token1: Token | undefined) {
     }
 
     if (latestBlock - (_meta?.block?.number ?? 0) > MAX_DATA_BLOCK_AGE) {
-      sendEvent('exception', { description: `Graph stale (latest block: ${latestBlock})` })
-
       return {
         isLoading,
         isFetching,

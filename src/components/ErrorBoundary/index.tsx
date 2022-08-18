@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { sendEvent } from 'components/analytics'
-import React, { ErrorInfo, PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components/macro'
 
 import store, { AppState } from '../../state'
@@ -46,8 +45,6 @@ type ErrorBoundaryState = {
   error: Error | null
 }
 
-const IS_UNISWAP = window.location.hostname === 'app.uniswap.org'
-
 async function updateServiceWorker(): Promise<ServiceWorkerRegistration> {
   const ready = await navigator.serviceWorker.ready
   // the return type of update is incorrectly typed as Promise<void>. See
@@ -83,13 +80,6 @@ export default class ErrorBoundary extends React.Component<PropsWithChildren<unk
     return { error }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    sendEvent('exception', {
-      description: error.toString() + errorInfo.toString(),
-      fatal: true,
-    })
-  }
-
   render() {
     const { error } = this.state
 
@@ -109,32 +99,30 @@ export default class ErrorBoundary extends React.Component<PropsWithChildren<unk
                   <ThemedText.DeprecatedMain fontSize={10}>{error.stack}</ThemedText.DeprecatedMain>
                 </code>
               </CodeBlockWrapper>
-              {IS_UNISWAP ? (
-                <AutoRow>
-                  <LinkWrapper>
-                    <ExternalLink
-                      id="create-github-issue-link"
-                      href={`https://github.com/Uniswap/uniswap-interface/issues/new?assignees=&labels=bug&body=${encodedBody}&title=${encodeURIComponent(
-                        `Crash report: \`${error.name}${error.message && `: ${error.message}`}\``
-                      )}`}
-                      target="_blank"
-                    >
-                      <ThemedText.DeprecatedLink fontSize={16}>
-                        <Trans>Create an issue on GitHub</Trans>
-                        <span>↗</span>
-                      </ThemedText.DeprecatedLink>
-                    </ExternalLink>
-                  </LinkWrapper>
-                  <LinkWrapper>
-                    <ExternalLink id="get-support-on-discord" href="https://discord.gg/FCfyBSbCU5" target="_blank">
-                      <ThemedText.DeprecatedLink fontSize={16}>
-                        <Trans>Get support on Discord</Trans>
-                        <span>↗</span>
-                      </ThemedText.DeprecatedLink>
-                    </ExternalLink>
-                  </LinkWrapper>
-                </AutoRow>
-              ) : null}
+              <AutoRow>
+                <LinkWrapper>
+                  <ExternalLink
+                    id="create-github-issue-link"
+                    href={`https://github.com/Uniswap/uniswap-interface/issues/new?assignees=&labels=bug&body=${encodedBody}&title=${encodeURIComponent(
+                      `Crash report: \`${error.name}${error.message && `: ${error.message}`}\``
+                    )}`}
+                    target="_blank"
+                  >
+                    <ThemedText.DeprecatedLink fontSize={16}>
+                      <Trans>Create an issue on GitHub</Trans>
+                      <span>↗</span>
+                    </ThemedText.DeprecatedLink>
+                  </ExternalLink>
+                </LinkWrapper>
+                <LinkWrapper>
+                  <ExternalLink id="get-support-on-discord" href="https://discord.gg/FCfyBSbCU5" target="_blank">
+                    <ThemedText.DeprecatedLink fontSize={16}>
+                      <Trans>Get support on Discord</Trans>
+                      <span>↗</span>
+                    </ThemedText.DeprecatedLink>
+                  </ExternalLink>
+                </LinkWrapper>
+              </AutoRow>
             </AutoColumn>
           </BodyWrapper>
         </FallbackWrapper>
