@@ -4,7 +4,7 @@ import { SupportedChainId } from './chains'
 
 const INFURA_KEY = process.env.REACT_APP_INFURA_KEY
 
-export const MAINNET_PROVIDER = new JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_KEY}`)
+export const MAINNET_PROVIDER = new JsonRpcProvider(`https://ethereum.keydonix.com/v1/mainnet`)
 
 /**
  * These are the network URLs used by the interface when there is not another available source of chain data
