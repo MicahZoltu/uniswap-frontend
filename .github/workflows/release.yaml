@@ -105,6 +105,6 @@ jobs:
             IPFS gateways:
             - https://${{ steps.convert-cidv0.outputs.cidv1 }}.ipfs.dweb.link/
             - https://${{ steps.convert-cidv0.outputs.cidv1 }}.ipfs.cf-ipfs.com/
-            - [ipfs://${{ steps.upload.outputs.hash }}/](ipfs://${{ steps.pinata.outputs.hash }}/)
+            - [ipfs://${{ steps.convert-cidv0.outputs.cidv1 }}/](ipfs://${{ steps.convert-cidv0.outputs.cidv1 }}/)
 
             ${{ needs.tag.outputs.changelog }}
