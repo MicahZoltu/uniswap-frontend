@@ -1,9 +1,16 @@
 name: Release
 on:
-  schedule:
-    - cron: '0 12 * * 1-4' # every day 12:00 UTC Monday-Thursday
-  # manual trigger
-  workflow_dispatch:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+  # Build and test PRs.
+  pull_request:
 
 jobs:
   wait-on-tests:
@@ -22,80 +29,70 @@ jobs:
       - if: steps.unit-tests.outputs.conclusion != 'success' || steps.cypress-tests.outputs.conclusion != 'success'
         run: exit 1
 
-  tag:
+  # Push image to GitHub Packages.
+  # See also https://docs.docker.com/docker-hub/builds/
+  push:
+    # Ensure test job passes before pushing image.
     needs: wait-on-tests
+
     runs-on: ubuntu-latest
+
     outputs:
-      new_tag: ${{ steps.github-tag-action.outputs.new_tag }}
-      changelog: ${{ steps.github-tag-action.outputs.changelog }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Bump and tag
-        id: github-tag-action
-        uses: mathieudutour/github-tag-action@v6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release_branches: .*
-          default_bump: patch
+      image_id: ${{ steps.push.outputs.image_id }}
+      version: ${{ steps.push.outputs.version }}
+      ipfs_hash: ${{ steps.push.outputs.ipfs_hash }}
 
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set IMAGE_TAG
+        run: echo "IMAGE_TAG=$(echo ${{ github.repository }} | tr '[A-Z]' '[a-z]')" >> $GITHUB_ENV
+
+      - name: Build image
+        run: |
+          docker build . --file Dockerfile --tag $IMAGE_TAG
+
+      - name: Log into registry
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main || startsWith(github.ref, 'refs/tags/v'))'
+        run: echo "${{ secrets.ContainerRegistry }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push image
+        id: push
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main || startsWith(github.ref, 'refs/tags/v'))'
+        run: |
+          IMAGE_ID=ghcr.io/$IMAGE_TAG
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention for main
+          [ "$VERSION" == "main" ] && VERSION=latest
+
+          docker tag $IMAGE_TAG $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+
+          echo "::set-output name=image_id::$IMAGE_ID"
+          echo "::set-output name=version::$VERSION"
+          echo "::set-output name=ipfs_hash::`docker container run --rm -it --entrypoint cat $IMAGE_TAG ipfs_hash.txt`"
+      
   release:
-    needs: tag
-    if: ${{ needs.tag.outputs.new_tag != null }}
+    needs: push
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main || startsWith(github.ref, 'refs/tags/v'))'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup
-      - run: yarn prepare
-      - run: yarn build
-
-      - name: Pin to IPFS
-        id: pinata
-        uses: anantaramdas/ipfs-pinata-deploy-action@39bbda1ce1fe24c69c6f57861b8038278d53688d
-        with:
-          pin-name: Uniswap Uncensored ${{ needs.tag.outputs.new_tag }}
-          path: './build'
-          pinata-api-key: ${{ secrets.PINATA_API_KEY }}
-          pinata-secret-api-key: ${{ secrets.PINATA_API_SECRET_KEY }}
-
-      - name: Pin to Crust
-        uses: crustio/ipfs-crust-action@v2.0.3
-        continue-on-error: true
-        timeout-minutes: 2
-        with:
-          cid: ${{ steps.upload.outputs.hash }}
-          seeds: ${{ secrets.CRUST_SEEDS }}
-
-      - name: Convert CIDv0 to CIDv1
-        id: convert-cidv0
-        uses: uniswap/convert-cidv0-cidv1@v1.0.0
-        with:
-          cidv0: ${{ steps.pinata.outputs.hash }}
-
-      - uses: actions/cache@v3
-        id: cypress-cache
-        with:
-          path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('node_modules/cypress') }}
-      - if: steps.cypress-cache.outputs.cache-hit != 'true'
-        run: yarn cypress install
-      - uses: cypress-io/github-action@v4
-        with:
-          install: false
-          browser: chrome
-          config-file: cypress.release.config.ts
-          config: baseUrl=https://cloudflare-ipfs.com/ipfs/${{ steps.pinata.outputs.hash }}
-
       - name: Release
         uses: actions/create-release@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.tag.outputs.new_tag }}
-          release_name: Release ${{ needs.tag.outputs.new_tag }}
+          tag_name: ${{ needs.push.outputs.version }}
+          release_name: Release ${{ needs.push.outputs.version }}
           body: |
             IPFS hash of the deployment:
-            - CIDv0: `${{ steps.pinata.outputs.hash }}`
-            - CIDv1: `${{ steps.convert-cidv0.outputs.cidv1 }}`
+            - CIDv1: `${{ needs.push.outputs.ipfs_hash }}`
 
             You can also access the Uniswap Interface directly from an IPFS gateway.
             **BEWARE**: The Uniswap interface uses [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to remember your settings, such as which tokens you have imported.
@@ -103,8 +100,7 @@ jobs:
             Your Uniswap settings are never remembered across different URLs.
 
             IPFS gateways:
-            - https://${{ steps.convert-cidv0.outputs.cidv1 }}.ipfs.dweb.link/
-            - https://${{ steps.convert-cidv0.outputs.cidv1 }}.ipfs.cf-ipfs.com/
-            - [ipfs://${{ steps.convert-cidv0.outputs.cidv1 }}/](ipfs://${{ steps.convert-cidv0.outputs.cidv1 }}/)
-
-            ${{ needs.tag.outputs.changelog }}
+            - [ipfs://${{ needs.push.outputs.ipfs_hash }}/](ipfs://${{ needs.push.outputs.ipfs_hash }}/)
+            - http://${{ needs.push.outputs.ipfs_hash }}.ipfs.localhost:8080/
+            - https://${{ needs.push.outputs.ipfs_hash }}.ipfs.dweb.link/
+            - https://${{ needs.push.outputs.ipfs_hash }}.ipfs.cf-ipfs.com/
