@@ -49,3 +49,17 @@ The Uniswap Interface supports swapping, adding liquidity, removing liquidity an
 
 The Uniswap V1 interface for mainnet and testnets is accessible via IPFS gateways
 linked from the [v1.0.0 release](https://github.com/Uniswap/uniswap-interface/releases/tag/v1.0.0).
+
+
+## Validating IPFS Hash
+
+```
+git clone <this repository>
+cd uniswap-frontend
+docker image build --tag uniswap-frontend .
+docker container run --rm -it --entrypoint cat uniswap-frontend ipfs_hash.txt
+```
+If your docker host has IPFS running locally, you can run the container built in the steps above to add the files to your local IPFS instance:
+```
+docker container run --rm -it uniswap-frontend
+```
