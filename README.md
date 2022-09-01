@@ -8,8 +8,8 @@
 
 An open source interface for Uniswap -- a protocol for decentralized exchange of Ethereum tokens.
 
-- Website: [uniswap.org](https://uniswap.org/)
-- Interface: [app.uniswap.org](https://app.uniswap.org)
+- Website: [uniswap.eth](ipfs://uniswap.eth/)
+- Interface: [app.uniswap.eth](ipfs://app.uniswap.eth)
 - Docs: [uniswap.org/docs/](https://docs.uniswap.org/)
 - Twitter: [@Uniswap](https://twitter.com/Uniswap)
 - Reddit: [/r/Uniswap](https://www.reddit.com/r/Uniswap/)
@@ -24,7 +24,7 @@ An open source interface for Uniswap -- a protocol for decentralized exchange of
 
 To access the Uniswap Interface, use an IPFS gateway link from the
 [latest release](https://github.com/Uniswap/uniswap-interface/releases/latest),
-or visit [app.uniswap.org](https://app.uniswap.org).
+or visit [app.uniswap.eth](ipfs://app.uniswap.eth).
 
 ## Unsupported tokens
 
@@ -40,10 +40,10 @@ For steps on local deployment, development, and code contribution, please see [C
 
 The Uniswap Interface supports swapping, adding liquidity, removing liquidity and migrating liquidity for Uniswap protocol V2.
 
-- Swap on Uniswap V2: https://app.uniswap.org/#/swap?use=v2
-- View V2 liquidity: https://app.uniswap.org/#/pool/v2
-- Add V2 liquidity: https://app.uniswap.org/#/add/v2
-- Migrate V2 liquidity to V3: https://app.uniswap.org/#/migrate/v2
+- Swap on Uniswap V2: ipfs://app.uniswap.eth/#/swap?use=v2
+- View V2 liquidity: ipfs://app.uniswap.eth/#/pool/v2
+- Add V2 liquidity: ipfs://app.uniswap.eth/#/add/v2
+- Migrate V2 liquidity to V3: ipfs://app.uniswap.eth/#/migrate/v2
 
 ## Accessing Uniswap V1
 

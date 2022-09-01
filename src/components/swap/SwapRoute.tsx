@@ -4,8 +4,6 @@ import { Currency, Percent, TradeType } from '@uniswap/sdk-core'
 import { Pair } from '@uniswap/v2-sdk'
 import { FeeAmount } from '@uniswap/v3-sdk'
 import { useWeb3React } from '@web3-react/core'
-import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
 import AnimatedDropdown from 'components/AnimatedDropdown'
 import { AutoColumn } from 'components/Column'
 import { LoadingRows } from 'components/Loader/styled'
@@ -69,12 +67,6 @@ export default memo(function SwapRoute({ trade, syncing, fixedOpen = false, ...r
 
   return (
     <Wrapper {...rest} darkMode={darkMode} fixedOpen={fixedOpen} redesignFlag={redesignFlagEnabled}>
-      <TraceEvent
-        events={[Event.onClick]}
-        name={EventName.SWAP_AUTOROUTER_VISUALIZATION_EXPANDED}
-        element={ElementName.AUTOROUTER_VISUALIZATION_ROW}
-        shouldLogImpression={!open}
-      >
         <RowBetween onClick={() => setOpen(!open)}>
           <AutoRow gap="4px" width="auto">
             <AutoRouterLogo />
@@ -82,7 +74,6 @@ export default memo(function SwapRoute({ trade, syncing, fixedOpen = false, ...r
           </AutoRow>
           {fixedOpen ? null : <OpenCloseIcon open={open} />}
         </RowBetween>
-      </TraceEvent>
       <AnimatedDropdown open={open || fixedOpen}>
         <AutoRow gap="4px" width="auto" style={{ paddingTop: '12px', margin: 0 }}>
           {syncing ? (

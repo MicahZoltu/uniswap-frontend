@@ -329,14 +329,6 @@ msgstr "Primerno za zelo stabilne pare."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Pot z najnižjo ceno stane ~{formattedGasPriceString} v plinu."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Blokiran naslov"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Blokiran naslov"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -942,10 +934,6 @@ msgstr "Visok vpliv na ceno"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Razumem"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Če menite, da je to napaka, pošljite e-pošto s svojim naslovom na"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1769,6 +1757,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Aplikacija pridobi podatke verige blokov iz gostujoče storitve The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Aplikacija pridobi podatke in verige in zgradi pogodbene klice z API-jem CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Aplikacija pridobi podatke in verige in zgradi pogodbene klice z API-jem Infura."
 
@@ -1856,10 +1848,6 @@ msgstr "Podatkov o likvidnosti ni."
 #: src/components/Tokens/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Pri nalaganju vašega stanja {tokenSymbol} je prišlo do napake"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Ta naslov je blokiran v vmesniku Uniswap Labs, ker je povezan z"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2463,10 +2451,6 @@ msgstr "po zdrsu"
 #: src/components/AccountDetailsV2/TransactionBody.tsx
 msgid "and"
 msgstr "in"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "blokiranimi dejanji."
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

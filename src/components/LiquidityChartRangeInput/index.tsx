@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Currency, Price, Token } from '@uniswap/sdk-core'
 import { FeeAmount } from '@uniswap/v3-sdk'
-import { sendEvent } from 'components/analytics'
 import { AutoColumn, ColumnCenter } from 'components/Column'
 import Loader from 'components/Loader'
 import { format } from 'd3'
@@ -156,9 +155,6 @@ export default function LiquidityChartRangeInput({
     [isSorted, price, ticksAtLimit]
   )
 
-  if (error) {
-    sendEvent('exception', { description: error.toString(), fatal: false })
-  }
 
   const isUninitialized = !currencyA || !currencyB || (formattedData === undefined && !isLoading)
 

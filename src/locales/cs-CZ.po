@@ -329,14 +329,6 @@ msgstr "Nejlepší pro velmi stabilní páry."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Nejlepší cena trasy stojí ~{formattedGasPriceString} v plynu."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Blokovaná adresa"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Blokovaná adresa"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -942,10 +934,6 @@ msgstr "Vysoký dopad na cenu"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Rozumím"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Pokud se domníváte, že se jedná o chybu, zašlete e-mail s vaší adresou na adresu"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1769,6 +1757,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Aplikace načítá data blockchainu z hostované služby The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Aplikace načítá data v řetězci a vytváří smluvní volání pomocí CloudFlare API."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Aplikace načítá data v řetězci a vytváří smluvní volání pomocí Infura API."
 
@@ -1856,10 +1848,6 @@ msgstr "Neexistují žádné údaje o likviditě."
 #: src/components/Tokens/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Při načítání vašeho zůstatku {tokenSymbol} došlo k chybě"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Tato adresa je v rozhraní Uniswap Labs blokována, protože je přidružena k jedné nebo více"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2463,10 +2451,6 @@ msgstr "po uklouznutí"
 #: src/components/AccountDetailsV2/TransactionBody.tsx
 msgid "and"
 msgstr "a"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "zablokované činnosti"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

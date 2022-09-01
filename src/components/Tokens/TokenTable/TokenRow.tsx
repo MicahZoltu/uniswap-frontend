@@ -1,7 +1,5 @@
 import { Trans } from '@lingui/macro'
 import { ParentSize } from '@visx/responsive'
-import { sendAnalyticsEvent } from 'components/AmplitudeAnalytics'
-import { EventName } from 'components/AmplitudeAnalytics/constants'
 import SparklineChart from 'components/Charts/SparklineChart'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { getChainInfo } from 'constants/chainInfo'
@@ -26,7 +24,6 @@ import { LoadingBubble } from '../loading'
 import {
   favoritesAtom,
   filterNetworkAtom,
-  filterStringAtom,
   filterTimeAtom,
   sortCategoryAtom,
   sortDirectionAtom,
@@ -452,7 +449,6 @@ export default function LoadedRow({
   const [favoriteTokens] = useAtom(favoritesAtom)
   const isFavorited = favoriteTokens.includes(tokenAddress)
   const toggleFavorite = useToggleFavorite(tokenAddress)
-  const filterString = useAtomValue(filterStringAtom)
   const filterNetwork = useAtomValue(filterNetworkAtom)
   const L2Icon = getChainInfo(filterNetwork).circleLogoUrl
 
@@ -467,23 +463,10 @@ export default function LoadedRow({
   const endingPrice = hasData ? pricePoints[pricePoints.length - 1] : DATA_EMPTY
   const [delta, arrow] = getDelta(startingPrice.value, endingPrice.value)
 
-  const exploreTokenSelectedEventProperties = {
-    chain_id: filterNetwork,
-    token_address: tokenAddress,
-    token_symbol: token?.symbol,
-    token_list_index: tokenListIndex,
-    token_list_length: tokenListLength,
-    time_frame: timePeriod,
-    search_token_address_input: filterString,
-  }
-
   const heartColor = isFavorited ? theme.accentActive : undefined
   // TODO: currency logo sizing mobile (32px) vs. desktop (24px)
   return (
-    <StyledLink
-      to={`/tokens/${tokenAddress}`}
-      onClick={() => sendAnalyticsEvent(EventName.EXPLORE_TOKEN_ROW_CLICKED, exploreTokenSelectedEventProperties)}
-    >
+    <StyledLink to={`/tokens/${tokenAddress}`}>
       <TokenRow
         address={tokenAddress}
         header={false}

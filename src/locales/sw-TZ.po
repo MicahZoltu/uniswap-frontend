@@ -329,14 +329,6 @@ msgstr "Bora kwa jozi imara sana."
 msgid "Best price route costs ~{formattedGasPriceString} in gas."
 msgstr "Gharama bora za njia ya bei ~{formattedGasPriceString} kwa gesi."
 
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "Blocked Address"
-msgstr "Anwani Iliyozuiwa"
-
-#: src/components/Blocklist/index.tsx
-msgid "Blocked address"
-msgstr "Anwani iliyozuiliwa"
-
 #: src/components/Header/NetworkSelector.tsx
 msgid "Blockscout"
 msgstr "Blockscout"
@@ -942,10 +934,6 @@ msgstr "Athari ya Bei ya Juu"
 #: src/pages/AddLiquidity/index.tsx
 msgid "I understand"
 msgstr "Naelewa"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "If you believe this is an error, please send an email including your address to"
-msgstr "Ikiwa unaamini kuwa hii ni hitilafu, tafadhali tuma barua pepe ikijumuisha anwani yako kwa"
 
 #: src/components/SearchModal/ImportList.tsx
 msgid "If you purchase a token from this list, you may not be able to sell it back."
@@ -1769,6 +1757,10 @@ msgid "The app fetches blockchain data from The Graph’s hosted service."
 msgstr "Programu huchota data ya blockchain kutoka kwa huduma inayopangishwa na The Graph."
 
 #: src/components/PrivacyPolicy/index.tsx
+msgid "The app fetches on-chain data and constructs contract calls with a CloudFlare API."
+msgstr "Programu huchota data ya mtandaoni na kuunda simu za mkataba kwa kutumia API ya CloudFlare."
+
+#: src/components/PrivacyPolicy/index.tsx
 msgid "The app fetches on-chain data and constructs contract calls with an Infura API."
 msgstr "Programu huchota data ya mtandaoni na kuunda simu za mkataba kwa kutumia API ya Infura."
 
@@ -1856,10 +1848,6 @@ msgstr "Hakuna data ya ukwasi."
 #: src/components/Tokens/TokenDetails/BalanceSummary.tsx
 msgid "There was an error loading your {tokenSymbol} balance"
 msgstr "Kulikuwa na hitilafu katika kupakia salio lako {tokenSymbol}"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "This address is blocked on the Uniswap Labs interface because it is associated with one or more"
-msgstr "Anwani hii imezuiwa kwenye kiolesura cha Uniswap Labs kwa sababu inahusishwa na moja au zaidi"
 
 #: src/components/PrivacyPolicy/index.tsx
 msgid "This app uses the following third-party APIs:"
@@ -2463,10 +2451,6 @@ msgstr "baada ya kuteleza"
 #: src/components/AccountDetailsV2/TransactionBody.tsx
 msgid "and"
 msgstr "na"
-
-#: src/components/ConnectedAccountBlocked/index.tsx
-msgid "blocked activities"
-msgstr "shughuli zilizozuiwa"
 
 #: src/components/Settings/index.tsx
 msgid "confirm"

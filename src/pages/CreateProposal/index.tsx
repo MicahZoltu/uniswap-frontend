@@ -3,8 +3,6 @@ import { getAddress, isAddress } from '@ethersproject/address'
 import { Trans } from '@lingui/macro'
 import { Currency, CurrencyAmount, Token } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { PageName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import { ButtonError } from 'components/Button'
 import { BlueCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -233,7 +231,6 @@ ${bodyValue}
   }
 
   return (
-    <Trace page={PageName.VOTE_PAGE} shouldLogImpression>
       <PageWrapper>
         <AppBody {...{ maxWidth: '800px' }}>
           <CreateProposalTabs />
@@ -295,6 +292,5 @@ ${bodyValue}
           <ProposalSubmissionModal isOpen={attempting} hash={hash} onDismiss={handleDismissSubmissionModal} />
         </AppBody>
       </PageWrapper>
-    </Trace>
   )
 }

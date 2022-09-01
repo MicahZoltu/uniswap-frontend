@@ -115,7 +115,6 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@amplitude/analytics-browser": "^1.1.4",
     "@coinbase/wallet-sdk": "^3.3.0",
     "@fontsource/ibm-plex-mono": "^4.5.1",
     "@fontsource/inter": "^4.5.1",
@@ -199,7 +198,6 @@
     "react-confetti": "^6.0.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.8",
-    "react-ga4": "^1.4.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-is": "^17.0.2",
     "react-markdown": "^4.3.1",

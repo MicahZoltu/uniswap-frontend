@@ -2,17 +2,6 @@ import { Trans } from '@lingui/macro'
 import { Trade } from '@uniswap/router-sdk'
 import { Currency, CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { sendAnalyticsEvent } from 'components/AmplitudeAnalytics'
-import { ElementName, Event, EventName, PageName, SectionName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
-import {
-  formatPercentInBasisPointsNumber,
-  formatToDecimal,
-  getDurationFromDateMilliseconds,
-  getTokenAddress,
-} from 'components/AmplitudeAnalytics/utils'
-import { sendEvent } from 'components/analytics'
 import { NetworkAlert } from 'components/NetworkAlert/NetworkAlert'
 import PriceImpactWarning from 'components/swap/PriceImpactWarning'
 import SwapDetailsDropdown from 'components/swap/SwapDetailsDropdown'
@@ -51,7 +40,6 @@ import TokenWarningModal from '../../components/TokenWarningModal'
 import { TOKEN_SHORTHANDS } from '../../constants/tokens'
 import { useAllTokens, useCurrency } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
-import useENSAddress from '../../hooks/useENSAddress'
 import { useERC20PermitFromTrade, UseERC20PermitState } from '../../hooks/useERC20Permit'
 import useIsArgentWallet from '../../hooks/useIsArgentWallet'
 import { useIsSwapUnsupported } from '../../hooks/useIsSwapUnsupported'
@@ -121,29 +109,6 @@ function largerPercentValue(a?: Percent, b?: Percent) {
     return b
   }
   return undefined
-}
-
-const formatSwapQuoteReceivedEventProperties = (
-  trade: InterfaceTrade<Currency, Currency, TradeType>,
-  fetchingSwapQuoteStartTime: Date | undefined
-) => {
-  return {
-    token_in_symbol: trade.inputAmount.currency.symbol,
-    token_out_symbol: trade.outputAmount.currency.symbol,
-    token_in_address: getTokenAddress(trade.inputAmount.currency),
-    token_out_address: getTokenAddress(trade.outputAmount.currency),
-    price_impact_basis_points: trade ? formatPercentInBasisPointsNumber(computeRealizedPriceImpact(trade)) : undefined,
-    estimated_network_fee_usd: trade.gasUseEstimateUSD ? formatToDecimal(trade.gasUseEstimateUSD, 2) : undefined,
-    chain_id:
-      trade.inputAmount.currency.chainId === trade.outputAmount.currency.chainId
-        ? trade.inputAmount.currency.chainId
-        : undefined,
-    token_in_amount: formatToDecimal(trade.inputAmount, trade.inputAmount.currency.decimals),
-    token_out_amount: formatToDecimal(trade.outputAmount, trade.outputAmount.currency.decimals),
-    quote_latency_milliseconds: fetchingSwapQuoteStartTime
-      ? getDurationFromDateMilliseconds(fetchingSwapQuoteStartTime)
-      : undefined,
-  }
 }
 
 const TRADE_STRING = 'SwapRouter'
@@ -217,15 +182,11 @@ export default function Swap() {
     inputError: wrapInputError,
   } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
-  const { address: recipientAddress } = useENSAddress(recipient)
 
   const parsedAmounts = useMemo(
     () =>
       showWrap
-        ? {
-            [Field.INPUT]: parsedAmount,
-            [Field.OUTPUT]: parsedAmount,
-          }
+        ? { [Field.INPUT]: parsedAmount, [Field.OUTPUT]: parsedAmount }
         : {
             [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
             [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
@@ -321,14 +282,8 @@ export default function Swap() {
       }
     } else {
       await approveCallback()
-
-      sendEvent({
-        category: 'Swap',
-        action: 'Approve',
-        label: [TRADE_STRING, trade?.inputAmount?.currency.symbol].join('/'),
-      })
     }
-  }, [signatureState, gatherPermitSignature, approveCallback, trade?.inputAmount?.currency.symbol])
+  }, [signatureState, gatherPermitSignature, approveCallback])
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -365,23 +320,6 @@ export default function Swap() {
     swapCallback()
       .then((hash) => {
         setSwapState({ attemptingTxn: false, tradeToConfirm, showConfirm, swapErrorMessage: undefined, txHash: hash })
-        sendEvent({
-          category: 'Swap',
-          action: 'transaction hash',
-          label: hash,
-        })
-        sendEvent({
-          category: 'Swap',
-          action:
-            recipient === null
-              ? 'Swap w/o Send'
-              : (recipientAddress ?? recipient) === account
-              ? 'Swap w/o Send + recipient'
-              : 'Swap w/ Send',
-          label: [TRADE_STRING, trade?.inputAmount?.currency?.symbol, trade?.outputAmount?.currency?.symbol, 'MH'].join(
-            '/'
-          ),
-        })
       })
       .catch((error) => {
         setSwapState({
@@ -392,17 +330,7 @@ export default function Swap() {
           txHash: undefined,
         })
       })
-  }, [
-    swapCallback,
-    stablecoinPriceImpact,
-    tradeToConfirm,
-    showConfirm,
-    recipient,
-    recipientAddress,
-    account,
-    trade?.inputAmount?.currency?.symbol,
-    trade?.outputAmount?.currency?.symbol,
-  ])
+  }, [swapCallback, stablecoinPriceImpact, tradeToConfirm, showConfirm])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
@@ -449,10 +377,6 @@ export default function Swap() {
 
   const handleMaxInput = useCallback(() => {
     maxInputAmount && onUserInput(Field.INPUT, maxInputAmount.toExact())
-    sendEvent({
-      category: 'Swap',
-      action: 'Max',
-    })
   }, [maxInputAmount, onUserInput])
 
   const handleOutputSelect = useCallback(
@@ -472,11 +396,6 @@ export default function Swap() {
     if (newSwapQuoteNeedsLogging && !!trade) {
       // Set the current datetime as the time of receipt of latest swap quote.
       setSwapQuoteReceivedDate(now)
-      // Log swap quote.
-      sendAnalyticsEvent(
-        EventName.SWAP_QUOTE_RECEIVED,
-        formatSwapQuoteReceivedEventProperties(trade, fetchingSwapQuoteStartTime)
-      )
       // Latest swap quote has just been logged, so we don't need to log the current trade anymore
       // unless user inputs change again and a new trade is in the process of being generated.
       setNewSwapQuoteNeedsLogging(false)
@@ -501,7 +420,6 @@ export default function Swap() {
     approvalState !== ApprovalState.NOT_APPROVED || approvalSubmitted || signatureState === UseERC20PermitState.SIGNED
 
   return (
-    <Trace page={PageName.SWAP_PAGE} shouldLogImpression>
       <>
         {redesignFlagEnabled ? (
           <TokenSafetyModal
@@ -540,7 +458,6 @@ export default function Swap() {
             <AutoColumn gap={'0px'}>
               <div style={{ display: 'relative' }}>
                 <TopInputWrapper redesignFlag={redesignFlagEnabled}>
-                  <Trace section={SectionName.CURRENCY_INPUT_PANEL}>
                     <SwapCurrencyInputPanel
                       label={
                         independentField === Field.OUTPUT && !showWrap ? (
@@ -558,17 +475,11 @@ export default function Swap() {
                       onCurrencySelect={handleInputSelect}
                       otherCurrency={currencies[Field.OUTPUT]}
                       showCommonBases={true}
-                      id={SectionName.CURRENCY_INPUT_PANEL}
+                      id="swap-currency-input"
                       loading={independentField === Field.OUTPUT && routeIsSyncing}
                     />
-                  </Trace>
                 </TopInputWrapper>
                 <ArrowWrapper clickable={isSupportedChain(chainId)} redesignFlag={redesignFlagEnabled}>
-                  <TraceEvent
-                    events={[Event.onClick]}
-                    name={EventName.SWAP_TOKENS_REVERSED}
-                    element={ElementName.SWAP_TOKENS_REVERSE_ARROW_BUTTON}
-                  >
                     {redesignFlagEnabled ? (
                       <ArrowContainer
                         onClick={() => {
@@ -598,14 +509,12 @@ export default function Swap() {
                         }
                       />
                     )}
-                  </TraceEvent>
                 </ArrowWrapper>
               </div>
               <BottomWrapper redesignFlag={redesignFlagEnabled}>
                 {redesignFlagEnabled && 'For'}
                 <AutoColumn gap={redesignFlagEnabled ? '0px' : '8px'}>
                   <BottomInputWrapper redesignFlag={redesignFlagEnabled}>
-                    <Trace section={SectionName.CURRENCY_OUTPUT_PANEL}>
                       <SwapCurrencyInputPanel
                         value={formattedAmounts[Field.OUTPUT]}
                         onUserInput={handleTypeOutput}
@@ -624,10 +533,9 @@ export default function Swap() {
                         onCurrencySelect={handleOutputSelect}
                         otherCurrency={currencies[Field.INPUT]}
                         showCommonBases={true}
-                        id={SectionName.CURRENCY_OUTPUT_PANEL}
+                        id="swap-currency-output"
                         loading={independentField === Field.INPUT && routeIsSyncing}
                       />
-                    </Trace>
 
                     {recipient !== null && !showWrap ? (
                       <>
@@ -662,16 +570,9 @@ export default function Swap() {
                         </ThemedText.DeprecatedMain>
                       </ButtonPrimary>
                     ) : !account ? (
-                      <TraceEvent
-                        events={[Event.onClick]}
-                        name={EventName.CONNECT_WALLET_BUTTON_CLICKED}
-                        properties={{ received_swap_quote: getIsValidSwapQuote(trade, tradeState, swapInputError) }}
-                        element={ElementName.CONNECT_WALLET_BUTTON}
-                      >
                         <ButtonLight onClick={toggleWalletModal} redesignFlag={redesignFlagEnabled}>
                           <Trans>Connect Wallet</Trans>
                         </ButtonLight>
-                      </TraceEvent>
                     ) : showWrap ? (
                       <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
                         {wrapInputError ? (
@@ -826,6 +727,5 @@ export default function Swap() {
           />
         )}
       </>
-    </Trace>
   )
 }

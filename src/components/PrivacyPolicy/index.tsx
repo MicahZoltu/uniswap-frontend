@@ -1,8 +1,7 @@
 import { Trans } from '@lingui/macro'
-import { sendEvent } from 'components/analytics'
 import Card, { DarkGreyCard } from 'components/Card'
 import Row, { AutoRow, RowBetween } from 'components/Row'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { ArrowDown, Info, X } from 'react-feather'
 import styled from 'styled-components/macro'
 import { ExternalLink, ThemedText } from 'theme'
@@ -53,25 +52,17 @@ const EXTERNAL_APIS = [
   },
   {
     name: 'Infura',
-    description: <Trans>The app fetches on-chain data and constructs contract calls with an Infura API.</Trans>,
-  },
-  {
-    name: 'TRM Labs',
     description: (
-      <>
-        <Trans>
-          The app securely collects your wallet address and shares it with TRM Labs Inc. for risk and compliance
-          reasons.
-        </Trans>{' '}
-        <ExternalLink href="https://help.uniswap.org/en/articles/5675203-terms-of-service-faq">
-          <Trans>Learn more</Trans>
-        </ExternalLink>
-      </>
+      <Trans>The app fetches on-chain data and constructs contract calls for some networks with an Infura API.</Trans>
     ),
   },
   {
-    name: 'Google Analytics & Amplitude',
-    description: <Trans>The app logs anonymized usage statistics in order to improve over time.</Trans>,
+    name: 'CloudFlare',
+    description: (
+      <Trans>
+        The app fetches on-chain data and constructs contract calls for some networks with a CloudFlare API.
+      </Trans>
+    ),
   },
   {
     name: 'The Graph',
@@ -83,15 +74,6 @@ export function PrivacyPolicyModal() {
   const node = useRef<HTMLDivElement>()
   const open = useModalIsOpen(ApplicationModal.PRIVACY_POLICY)
   const toggle = useTogglePrivacyPolicy()
-
-  useEffect(() => {
-    if (!open) return
-
-    sendEvent({
-      category: 'Modal',
-      action: 'Show Legal',
-    })
-  }, [open])
 
   return (
     <Modal isOpen={open} onDismiss={() => toggle()}>

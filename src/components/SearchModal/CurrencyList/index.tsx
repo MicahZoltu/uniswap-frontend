@@ -1,8 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Currency, CurrencyAmount, Token } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
 import { LightGreyCard } from 'components/Card'
 import QuestionHelper from 'components/QuestionHelper'
 import TokenSafetyIcon from 'components/TokenSafety/TokenSafetyIcon'
@@ -125,7 +123,6 @@ function CurrencyRow({
   otherSelected,
   style,
   showCurrencyAmount,
-  eventProperties,
 }: {
   currency: Currency
   onSelect: () => void
@@ -133,7 +130,6 @@ function CurrencyRow({
   otherSelected: boolean
   style: CSSProperties
   showCurrencyAmount?: boolean
-  eventProperties: Record<string, unknown>
 }) {
   const { account } = useWeb3React()
   const key = currencyKey(currency)
@@ -148,12 +144,6 @@ function CurrencyRow({
 
   // only show add or remove buttons if not on selected list
   return (
-    <TraceEvent
-      events={[Event.onClick, Event.onKeyPress]}
-      name={EventName.TOKEN_SELECTED}
-      properties={{ is_imported_by_user: customAdded, ...eventProperties }}
-      element={ElementName.TOKEN_SELECTOR_ROW}
-    >
       <MenuItem
         tabIndex={0}
         redesignFlag={redesignFlagEnabled}
@@ -200,7 +190,6 @@ function CurrencyRow({
           )
         )}
       </MenuItem>
-    </TraceEvent>
   )
 }
 
@@ -240,25 +229,6 @@ interface TokenRowProps {
   index: number
   style: CSSProperties
 }
-
-const formatAnalyticsEventProperties = (
-  token: Token,
-  index: number,
-  data: any[],
-  searchQuery: string,
-  isAddressSearch: string | false
-) => ({
-  token_symbol: token?.symbol,
-  token_address: token?.address,
-  is_suggested_token: false,
-  is_selected_from_list: true,
-  scroll_position: '',
-  token_list_index: index,
-  token_list_length: data.length,
-  ...(isAddressSearch === false
-    ? { search_token_symbol_input: searchQuery }
-    : { search_token_address_input: isAddressSearch }),
-})
 
 export default function CurrencyList({
   height,
@@ -335,7 +305,6 @@ export default function CurrencyList({
             onSelect={handleSelect}
             otherSelected={otherSelected}
             showCurrencyAmount={showCurrencyAmount}
-            eventProperties={formatAnalyticsEventProperties(token, index, data, searchQuery, isAddressSearch)}
           />
         )
       } else {
@@ -351,8 +320,6 @@ export default function CurrencyList({
       showImportView,
       showCurrencyAmount,
       isLoading,
-      isAddressSearch,
-      searchQuery,
     ]
   )
 

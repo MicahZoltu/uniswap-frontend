@@ -4,9 +4,6 @@ import { Trans } from '@lingui/macro'
 import { Currency, CurrencyAmount, Fraction, Percent, Price, Token } from '@uniswap/sdk-core'
 import { NonfungiblePositionManager, Pool, Position } from '@uniswap/v3-sdk'
 import { useWeb3React } from '@web3-react/core'
-import { PageName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
-import { sendEvent } from 'components/analytics'
 import Badge from 'components/Badge'
 import { ButtonConfirmed, ButtonGray, ButtonPrimary } from 'components/Button'
 import { DarkCard, LightCard } from 'components/Card'
@@ -468,12 +465,6 @@ export function PositionPage() {
             setCollectMigrationHash(response.hash)
             setCollecting(false)
 
-            sendEvent({
-              category: 'Liquidity',
-              action: 'CollectV3',
-              label: [currency0ForFeeCollectionPurposes.symbol, currency1ForFeeCollectionPurposes.symbol].join('/'),
-            })
-
             addTransaction(response, {
               type: TransactionType.COLLECT_FEES,
               currencyId0: currencyId(currency0ForFeeCollectionPurposes),
@@ -571,7 +562,6 @@ export function PositionPage() {
       <div />
     </LoadingRows>
   ) : (
-    <Trace page={PageName.POOL_PAGE} shouldLogImpression>
       <>
         <PageWrapper>
           <TransactionConfirmationModal
@@ -928,6 +918,5 @@ export function PositionPage() {
         </PageWrapper>
         <SwitchLocaleLink />
       </>
-    </Trace>
   )
 }

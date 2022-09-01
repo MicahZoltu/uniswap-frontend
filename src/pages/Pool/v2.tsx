@@ -1,8 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Pair } from '@uniswap/v2-sdk'
 import { useWeb3React } from '@web3-react/core'
-import { PageName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import { UNSUPPORTED_V2POOL_CHAIN_IDS } from 'constants/chains'
 import JSBI from 'jsbi'
 import { useMemo } from 'react'
@@ -140,7 +138,6 @@ export default function Pool() {
   })
 
   return (
-    <Trace page={PageName.POOL_PAGE} shouldLogImpression>
       <>
         <PageWrapper>
           <VoteCard>
@@ -282,6 +279,5 @@ export default function Pool() {
         </PageWrapper>
         <SwitchLocaleLink />
       </>
-    </Trace>
   )
 }

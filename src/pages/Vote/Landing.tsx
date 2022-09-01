@@ -1,8 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { CurrencyAmount, Token } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { PageName } from 'components/AmplitudeAnalytics/constants'
-import { Trace } from 'components/AmplitudeAnalytics/Trace'
 import { ButtonPrimary } from 'components/Button'
 import { AutoColumn } from 'components/Column'
 import { CardBGImage, CardNoise, CardSection, DataCard } from 'components/earn/styled'
@@ -139,7 +137,6 @@ export default function Landing() {
   )
   return (
     <>
-      <Trace page={PageName.VOTE_PAGE} shouldLogImpression>
         <PageWrapper gap="lg" justify="center">
           <DelegateModal
             isOpen={showDelegateModal}
@@ -290,7 +287,6 @@ export default function Landing() {
             <Trans>A minimum threshold of 0.25% of the total UNI supply is required to submit proposals</Trans>
           </ThemedText.DeprecatedSubHeader>
         </PageWrapper>
-      </Trace>
       <SwitchLocaleLink />
     </>
   )

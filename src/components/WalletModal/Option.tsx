@@ -1,5 +1,3 @@
-import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
-import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
 import { RedesignVariant, useRedesignFlag } from 'featureFlags/flags/redesign'
 import React from 'react'
 import { Check } from 'react-feather'
@@ -158,14 +156,7 @@ export default function Option({
   const redesignFlag = useRedesignFlag()
   const redesignFlagEnabled = redesignFlag === RedesignVariant.Enabled
 
-  const content = (
-    <TraceEvent
-      events={[Event.onClick]}
-      name={EventName.WALLET_SELECTED}
-      properties={{ wallet_type: header }}
-      element={ElementName.WALLET_TYPE_OPTION}
-    >
-      {redesignFlagEnabled ? (
+  const content = redesignFlagEnabled ? (
         <OptionCardClickable
           id={id}
           onClick={onClick}
@@ -211,9 +202,7 @@ export default function Option({
             <img src={icon} alt={'Icon'} />
           </IconWrapperDeprecated>
         </OptionCardClickable>
-      )}
-    </TraceEvent>
-  )
+      )
   if (link) {
     return <ExternalLink href={link}>{content}</ExternalLink>
   }
